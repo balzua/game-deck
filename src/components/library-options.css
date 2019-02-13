@@ -16,13 +16,7 @@
 .chart {
   grid-area: chart;
   border: 1px solid black;
-  padding: 10%;
-}
-
-.stats {
-  grid-area: stats;
-  border: 1px solid black;
-  padding: 10%;
+  padding: 5px;
 }
 
 .options {
