@@ -18,7 +18,9 @@ export default class Chart extends React.Component {
     };
     
     return (
-      <Radar data={chartData} options={chartOptions}/>
+      <div className="chart">
+        <Radar data={chartData} options={chartOptions}/>
+      </div>
     );
   }
 };
