@@ -47,7 +47,12 @@ const initialState = {
     "Fighting": 20,
     "Shooter": 73
   },
-  "filters": {
+  "platforms": {
+    "NS": true,
+    "XONE": false,
+    "GCN": true,
+    "PS4": true,
+    "SNES": false
   }
 };
 
