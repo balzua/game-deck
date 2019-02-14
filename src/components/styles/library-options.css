@@ -1,0 +1,29 @@
+.options-container {
+  display: grid;
+  grid-template-areas: 
+    "chart chart"
+    "stats options"
+    "add add";
+  border: 1px solid black;
+}
+
+.add-games {
+  grid-area: add;
+  border: 1px solid black;
+  padding: 3%;
+}
+
+.chart {
+  grid-area: chart;
+  border: 1px solid black;
+  padding: 5px;
+  min-width: 0;
+}
+
+@media only screen and (min-width: 600px) {
+  .options-container {
+    grid-template-areas: 
+    "chart stats options"
+    "add add add";
+  }
+}

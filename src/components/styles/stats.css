@@ -1,0 +1,20 @@
+.stats {
+  grid-area: stats;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  border: 1px solid black;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.stats span {
+  display: block;
+  margin: 5px;
+}
+
+.stats h4 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 1px 0 3px 0;
+}
