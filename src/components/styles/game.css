@@ -26,7 +26,7 @@
 }
 
 .game-title h3 {
-  margin: 0;
+  margin: 0 0 0 3px;
 }
 
 .game-info {
@@ -48,6 +48,10 @@
   display: inline-block;
   margin-left: 3px;
   margin-right: 20px;
+}
+
+.game-info p {
+  margin-left: 3px;
 }
 
 .user-info {
