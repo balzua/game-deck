@@ -33,7 +33,22 @@ const initialState = {
       "userRating": 3,
       "status": "completed"
     }
-  ]
+  ],
+  "libraryStats": {
+    "favoriteGenre": "Role-Playing",
+    "totalGames": 3,
+    "totalCompleted": 1,
+    "averageRating": 4
+  },
+  "chartScores": {
+    "Action": 80,
+    "Puzzle": 50,
+    "Role-Playing": 95,
+    "Fighting": 20,
+    "Shooter": 73
+  },
+  "filters": {
+  }
 };
 
 export const reducer = (state = initialState, action) => {
