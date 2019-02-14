@@ -1,5 +1,5 @@
 import React from 'react';
-import './library-options.css'
+import './styles/library-options.css'
 
 import Chart from './chart';
 import Stats from './stats';

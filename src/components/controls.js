@@ -1,5 +1,5 @@
 import React from 'react';
-import './controls.css';
+import './styles/controls.css';
 
 import Platform from './platform';
 

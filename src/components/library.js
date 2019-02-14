@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Game from './game';
 import LibraryOptions from './library-options';
-import './library.css';
+import './styles/library.css';
 
 export default class Library extends Component {
   render() {

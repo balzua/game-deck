@@ -1,5 +1,5 @@
 import React from 'react';
-import './platform.css';
+import './styles/platform.css';
 
 export default function Platform(props) {
   return (

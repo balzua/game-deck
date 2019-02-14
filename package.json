@@ -13,7 +13,8 @@
     "redux-form": "^8.1.0",
     "redux-thunk": "^2.3.0",
     "chart.js": "^2.7.3",
-    "react-chartjs-2": "^2.7.4"
+    "react-chartjs-2": "^2.7.4",
+    "react-select": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",

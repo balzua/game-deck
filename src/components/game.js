@@ -1,5 +1,5 @@
 import React from 'react';
-import './game.css';
+import './styles/game.css';
 
 import GameStatus from './game-status';
 import DeleteButton from './delete-button';
