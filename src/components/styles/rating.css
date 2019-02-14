@@ -1,0 +1,12 @@
+.rating {
+  font-size: 32px;
+  color: #FFD700;
+}
+
+.star-disabled {
+  color: #727272;
+}
+
+.star-enabled {
+  color: #FFD700;
+}

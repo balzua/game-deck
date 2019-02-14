@@ -7,7 +7,9 @@ const initialState = {
       "rating": "M",
       "genres": ['Shooter', 'Action/Adventure'],
       "platforms": ['PC', 'XONE', 'PS4'],
-      "image": "https://www.giantbomb.com/api/image/scale_small/3049558-box_re2.png"
+      "image": "https://www.giantbomb.com/api/image/scale_small/3049558-box_re2.png",
+      "userRating": 4,
+      "status": "wishlist"
     },
     {
       "title": "Final Fantasy IX",
@@ -16,7 +18,9 @@ const initialState = {
       "rating": "T",
       "genres": ['Role-Playing', 'Card Game'],
       "platforms": ['PC', 'PS1', 'PS3', 'PS4', 'NS'],
-      "image": "https://www.giantbomb.com/api/image/scale_small/1814634-box_ff9.png"
+      "image": "https://www.giantbomb.com/api/image/scale_small/1814634-box_ff9.png",
+      "userRating": 5,
+      "status": "playing"
     },
     {
       "title": "God of War",
@@ -25,7 +29,9 @@ const initialState = {
       "rating": "M",
       "genres": ['Action'],
       "platforms": ['PS4'],
-      "image": "https://www.giantbomb.com/api/image/scale_small/3012241-god%20of%20war%20%28ps4%29.jpg"
+      "image": "https://www.giantbomb.com/api/image/scale_small/3012241-god%20of%20war%20%28ps4%29.jpg",
+      "userRating": 3,
+      "status": "completed"
     }
   ]
 };

@@ -13,8 +13,9 @@ export default class Chart extends React.Component {
     
     const chartOptions = {
       legend: {
-        display: false
-      }
+        display: false,
+      },
+      responsive: true
     };
     
     return (

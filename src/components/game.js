@@ -1,7 +1,8 @@
 import React from 'react';
 import './styles/game.css';
 
-import GameStatus from './game-status';
+import Rating from './rating';
+import GameForm from './game-form';
 import DeleteButton from './delete-button';
 import Platform from './platform';
 
@@ -9,7 +10,7 @@ export default class Game extends React.Component {
   render() {
     const genres = this.props.genres.join(', ');
     const platforms = this.props.platforms.map((platform, index) => 
-      <Platform name={platform} index={index} />
+      <Platform name={platform} key={index} />
     );
     return (
       <div className="library-item">
@@ -31,7 +32,10 @@ export default class Game extends React.Component {
             </ul>
           </div>
           <div className="user-info">
-            <GameStatus />
+            <div className="game-controls">
+              <Rating rating={this.props.userRating} />
+              <GameForm status={this.props.status} />
+            </div>
             <DeleteButton />
           </div>
       </div>

@@ -6,7 +6,7 @@ import Game from './game';
 
 export function GameList(props) {
   const games = props.games.map((game, index) => 
-    <Game {...game} index={index} />
+    <Game {...game} key={index} />
   );
   return (
     <div className="items">

@@ -8,14 +8,87 @@
     margin-top: 4px;
 }
 
-.switch {
-  background-color: #ff0000;
+.ps {
+  background-color: #A1A1A1;
+  color: #000;
+}
+
+.ps2 {
+  background-color: #000;
+  color: #0C98C3;
+}
+
+.ps3 {
+  background-color: #000;
+  color: #fff;
+}
+
+.ps4 {
+  background-color: #027BED;
+  color: #fff;
+}
+
+.nes {
+  background-color: #BDAEAD;
+  color: #EE1515;
+}
+
+.snes {
+  background-color: #CEC9CC;
+  color: #4F43AE;
+}
+
+.n64 {
+  background-color: #F7BA01;
+  color: #000;
+}
+
+.gc {
+  background-color: #663399;
+  color: #fff;
+}
+
+.wii {
+  background-color: #fff;
+  color: #0095C1;
+  border: 1px solid black;
+}
+
+.wiiU {
+  background-color: #0095C1;
+  color: #fff;
+}
+
+.ns {
+  background-color: #E90000;
   color: #ffffff;
 }
 
 .xbox {
+  background-color: #000;
+  color: #77BB44;
+}
+
+.x360 {
+  background-color: #F7F7F7;
+  color: #73B542;
+}
+
+.x1 {
   background-color: #10c400;
   color: #ffffff;
+}
+
+.pc {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid black;
+}
+
+.other {
+  color: #000000;
+  background-color: #ffffff;
+  border: 1px solid black;
 }
 
 .disabled {

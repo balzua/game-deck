@@ -1,8 +1,8 @@
 .options-container {
   display: grid;
   grid-template-areas: 
-    "chart stats"
-    "chart options"
+    "chart chart"
+    "stats options"
     "add add";
   border: 1px solid black;
 }
@@ -17,10 +17,10 @@
   grid-area: chart;
   border: 1px solid black;
   padding: 5px;
+  min-width: 0;
 }
 
-
-@media only screen and (min-width: 500px) {
+@media only screen and (min-width: 600px) {
   .options-container {
     grid-template-areas: 
     "chart stats options"
