@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Game from './game';
+import GameList from './game-list';
 import LibraryOptions from './library-options';
 import './styles/library.css';
 
@@ -8,8 +8,7 @@ export default class Library extends Component {
     return (
       <div className="container">
         <LibraryOptions />
-        <Game title="Resident Evil 2" rating="M" description="Description" />
-        <Game title="Halo 3" rating="M" />
+        <GameList />
       </div>
     );
   }
