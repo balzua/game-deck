@@ -2,11 +2,11 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import './styles/game-list.css';
-import Game from './game';
+import LibraryItem from './library-item';
 
 export function GameList(props) {
   const games = props.games.map((game, index) => 
-    <Game {...game} key={index} />
+    <LibraryItem game={game} key={index} />
   );
   return (
     <div className="items">
