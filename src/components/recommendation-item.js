@@ -2,18 +2,18 @@ import React from 'react';
 import './styles/library-item.css';
 
 import Game from './game';
-import DeleteButton from './delete-button';
 
-export default class Recommendation extends React.Component {
+export default class RecommendationItem extends React.Component {
   render() {
     return (
       <div className="library-item">
           <Game {...this.props.game} />
           <div className="user-info">
             <div className="game-controls">
-              Recommendation Controls
+              <button>Add to Wishlist</button>
+              <button>Add to Library</button>
+              <button>Not Interested</button>
             </div>
-            <DeleteButton />
           </div>
       </div>
     );

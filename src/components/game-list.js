@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 import './styles/game-list.css';
 import LibraryItem from './library-item';
-import Recommendation from './recommendation';
+import RecommendationItem from './recommendation-item';
 
 export function GameList(props) {
   let games;
@@ -13,7 +13,7 @@ export function GameList(props) {
     );
   } else if (props.type === "recommendations") {
     games = props.games.map((game, index) => 
-      <Recommendation game={game} key={index} />
+      <RecommendationItem game={game} key={index} />
     );
   }
   return (
