@@ -1,10 +1,11 @@
 import React from 'react';
+import RegistrationForm from './registration-form';
 import './styles/modal.css';
 
 export default class Modal extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {display: false};
+    this.state = {display: true};
   }
   
   render() {
@@ -12,7 +13,7 @@ export default class Modal extends React.Component {
       return (
         <div className="modal">
           <div className="modal-content">
-            Modal displayed with content: {this.props.content}
+            <RegistrationForm />
           </div>
         </div>
       );
