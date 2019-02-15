@@ -14,6 +14,7 @@ export function Controls(props) {
     <div className="controls">
       <h4>Platforms</h4>
       {platforms}
+      <a href="#">Add...</a>
       <h4>Visibility</h4>
       Make Library Public? <input type="checkbox" />
       <h4>Sorting</h4>

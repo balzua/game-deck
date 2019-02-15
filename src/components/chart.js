@@ -1,12 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Radar} from 'react-chartjs-2';
+import {Radar, Chart as JSC} from 'react-chartjs-2';
 
 export function Chart(props) {
   const chartData = {
     labels: props.labels,
     datasets: [{
-        data: props.data
+        data: props.data,
+        backgroundColor: 'rgba(22,123,233, 0.3)',
+        borderColor: 'rgba(22,123,233, 0.7)'
     }]
   };
 
