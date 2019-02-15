@@ -25,8 +25,8 @@ export function Chart(props) {
 };
 
 export const mapStateToProps = state => ({
-  labels: Object.keys(state.chartScores),
-  data: Object.values(state.chartScores)
+  labels: Object.keys(state.app.chartScores),
+  data: Object.values(state.app.chartScores)
 });
 
 export default connect(mapStateToProps)(Chart);

@@ -16,7 +16,7 @@ export function GameList(props) {
 };
 
 export const mapStateToProps = state => ({
-  games: state.games
+  games: state.app.games
 });
 
 export default connect(mapStateToProps)(GameList);

@@ -48,7 +48,9 @@ const initialState = {
     "Shooter": 73
   },
   "filters": {
-  }
+  },
+  "modalDisplay": false,
+  "modalContent": "registration"
 };
 
 export const reducer = (state = initialState, action) => {

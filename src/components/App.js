@@ -15,7 +15,7 @@ class App extends Component {
       // Have a Router to determine whether to Render Library or Recommendations
       <Router>
         <div className="app">
-          <Modal content="test" />
+          <Modal />
           <Header />
           <Switch>
             <Route exact path='/library' component={Library} />
