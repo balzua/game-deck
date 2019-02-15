@@ -50,7 +50,7 @@ const initialState = {
   "filters": {
   },
   "modalDisplay": false,
-  "modalContent": "registration"
+  "modalContent": "login"
 };
 
 export const reducer = (state = initialState, action) => {

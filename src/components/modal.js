@@ -1,13 +1,15 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import RegistrationForm from './registration-form';
+import LoginForm from './login-form';
 import './styles/modal.css';
 
 export function Modal(props) {
   let content;
   if (props.content === "registration") {
-    console.log("Content");
     content = <RegistrationForm />
+  } else if (props.content === "login") {
+    content = <LoginForm />
   }
   if (props.display) {
     return (
