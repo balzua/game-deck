@@ -8,8 +8,8 @@ export default class Controls extends React.Component {
     return (
       <div className="controls">
         <h4>Platforms</h4>
-        <Platform name="switch" />
-        <Platform name="xbox" disabled />
+        <Platform name="NS" isButton />
+        <Platform name="XBOX" isButton disabled />
         <h4>Visibility</h4>
         Make Library Public? <input type="checkbox" />
         <h4>Sorting</h4>

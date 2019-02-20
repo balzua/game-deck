@@ -10,3 +10,9 @@ export const updateStatus = (status, id) => ({
   id,
   status
 });
+
+export const FILTER_PLATFORM = 'FILTER_PLATFORM';
+export const filterPlatform = platform => ({
+  type: FILTER_PLATFORM,
+  platform
+});

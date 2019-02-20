@@ -1,4 +1,4 @@
-import {DELETE_GAME, UPDATE_STATUS} from '../actions';
+import {DELETE_GAME, UPDATE_STATUS, FILTER_PLATFORM} from '../actions';
 
 const initialState = {
   "games": [
@@ -52,8 +52,7 @@ const initialState = {
     "Fighting": 20,
     "Shooter": 73
   },
-  "filters": {
-  },
+  "filters": ['NS'],
   "modalDisplay": false,
   "modalContent": "login"
 };
@@ -75,6 +74,22 @@ export const reducer = (state = initialState, action) => {
         }
       })
     });
+  } 
+  else if (action.type === FILTER_PLATFORM) {
+    //First, find the position of the filter in the filters array. Will be -1 if not present.
+    const filterLocation = state.filters.findIndex(filter => filter == action.platform);
+    //If the item is already in the filters, remove it.
+    if (filterLocation >= 0) {
+      return Object.assign({}, state, {
+        filters: [...state.filters.slice(0, filterLocation), ...state.filters.slice(filterLocation + 1)]
+      });
+    } 
+    //If the item is not in the filters, add it.
+    else {
+      return Object.assign({}, state, {
+        filters: [...state.filters, action.platform]
+      });
+    }
   } else {
     return state;
   }

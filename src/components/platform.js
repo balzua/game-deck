@@ -1,7 +1,9 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {filterPlatform} from '../actions';
 import './styles/platform.css';
 
-export default function Platform(props) {
+export function Platform(props) {
   
   const classNames = {
     "SNES": 'snes',
@@ -22,7 +24,25 @@ export default function Platform(props) {
   
   const className = classNames[props.name] || 'other';
   
-  return (
-    <span className={`platform ${className} ${props.disabled ? 'disabled' : ''}`}>{props.name}</span>
-  );
+  if (props.isButton) {
+    //Component should be clickable. It should find out if it's disabled based on the state, and also be able to dispatch
+    //an action to toggle whether or not it is filtered.
+    return (
+      <span className={`platform ${className} ${props.disabled ? 'disabled' : ''}`}
+        onClick={() => props.dispatch(filterPlatform(props.name))}>
+        {props.name}</span>
+    );
+  } else {
+    //Component is not clickable. Do not set disabled based on state, do not provide onClick method.
+    return (
+      <span className={`platform ${className}`}>{props.name}</span>
+    );
+  }
 };
+
+const mapStateToProps = (state, ownProps) => ({
+  //Search the filters array for this platform's name. If it is not present, disabled will be false, true otherwise.
+  disabled: Boolean(state.app.filters.find(filter => filter == ownProps.name))
+});
+
+export default connect(mapStateToProps)(Platform);
