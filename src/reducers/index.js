@@ -1,7 +1,10 @@
+import {DELETE_GAME} from '../actions';
+
 const initialState = {
   "games": [
     {
       "title": "Resident Evil 2",
+      "id": 20,
       "description": "A remake of the 1998 survival horror classic, Resident Evil 2.",
       "releaseDate": "January 25, 2019",
       "rating": "M",
@@ -13,6 +16,7 @@ const initialState = {
     },
     {
       "title": "Final Fantasy IX",
+      "id": 300,
       "description": "Zidane Tribal and his troupe attempt to abduct Princess Garnet of Alexandria in this throwback to the classics of the series.",
       "releaseDate": "July 7, 2000",
       "rating": "T",
@@ -24,6 +28,7 @@ const initialState = {
     },
     {
       "title": "God of War",
+      "id": 16,
       "description": "God of War is a soft reboot on the franchise of the same name. It sees Kratos and his son Atreus traverse a world of Norse myths.",
       "releaseDate": "April 20, 2018",
       "rating": "M",
@@ -54,5 +59,11 @@ const initialState = {
 };
 
 export const reducer = (state = initialState, action) => {
-  return state;
+  if (action.type === DELETE_GAME) {
+    return Object.assign({}, state, {
+      games: state.games.filter(game => game.id !== action.id)
+    });
+  } else {
+    return state;
+  }
 };

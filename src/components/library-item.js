@@ -16,7 +16,7 @@ export default class LibraryItem extends React.Component {
               <Rating rating={this.props.game.userRating} />
               <GameForm status={this.props.game.status} />
             </div>
-            <DeleteButton />
+            <DeleteButton id={this.props.game.id} />
           </div>
       </div>
     );

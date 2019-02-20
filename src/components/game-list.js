@@ -9,7 +9,7 @@ export function GameList(props) {
   let games;
   if (props.type === "library") {
     games = props.games.map((game, index) => 
-      <LibraryItem game={game} key={index} />
+      <LibraryItem game={game} key={index} id={index} />
     );
   } else if (props.type === "recommendations") {
     games = props.games.map((game, index) => 
