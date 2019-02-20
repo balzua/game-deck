@@ -1,15 +1,19 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import './styles/controls.css';
 
 import Platform from './platform';
 
-export default class Controls extends React.Component {
+export class Controls extends React.Component {
+                                             
   render() {
+    const platforms = this.props.platforms.map((platform, index) =>
+      <Platform name={platform} key={index} isButton />
+    );
     return (
       <div className="controls">
         <h4>Platforms</h4>
-        <Platform name="switch" />
-        <Platform name="xbox" disabled />
+        {platforms}
         <h4>Visibility</h4>
         Make Library Public? <input type="checkbox" />
         <h4>Sorting</h4>
@@ -23,3 +27,9 @@ export default class Controls extends React.Component {
     );
   }
 };
+
+const mapStateToProps = state => ({
+  platforms: state.app.platforms
+});
+
+export default connect(mapStateToProps)(Controls);
