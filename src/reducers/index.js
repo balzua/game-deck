@@ -52,7 +52,7 @@ const initialState = {
     "Fighting": 20,
     "Shooter": 73
   },
-  "filters": ['NS'],
+  "filters": ["XBOX", "NS", "PS1"],
   "modalDisplay": false,
   "modalContent": "login"
 };
