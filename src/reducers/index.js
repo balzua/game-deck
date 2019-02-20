@@ -1,4 +1,4 @@
-import {DELETE_GAME} from '../actions';
+import {DELETE_GAME, UPDATE_STATUS} from '../actions';
 
 const initialState = {
   "games": [
@@ -58,10 +58,22 @@ const initialState = {
   "modalContent": "login"
 };
 
+
 export const reducer = (state = initialState, action) => {
   if (action.type === DELETE_GAME) {
     return Object.assign({}, state, {
       games: state.games.filter(game => game.id !== action.id)
+    });
+  } 
+  else if (action.type === UPDATE_STATUS) {
+    return Object.assign({}, state, {
+      games: state.games.map(game => {
+        if (game.id !== action.id) {
+          return {...game}
+        } else {
+          return {...game, status: action.status};
+        }
+      })
     });
   } else {
     return state;
