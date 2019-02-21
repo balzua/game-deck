@@ -8,7 +8,7 @@ export default class Library extends Component {
     return (
       <div className="container">
         <LibraryOptions />
-        <GameList />
+        <GameList type="library" />
       </div>
     );
   }
