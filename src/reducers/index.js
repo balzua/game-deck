@@ -1,4 +1,4 @@
-import {DELETE_GAME, UPDATE_STATUS, FILTER_PLATFORM} from '../actions';
+import {DELETE_GAME, UPDATE_STATUS, FILTER_PLATFORM, UPDATE_RATING} from '../actions';
 
 const initialState = {
   "games": [
@@ -69,7 +69,7 @@ export const reducer = (state = initialState, action) => {
     return Object.assign({}, state, {
       games: state.games.map(game => {
         if (game.id !== action.id) {
-          return {...game}
+          return {...game};
         } else {
           return {...game, status: action.status};
         }
@@ -78,7 +78,7 @@ export const reducer = (state = initialState, action) => {
   } 
   else if (action.type === FILTER_PLATFORM) {
     //First, find the position of the filter in the filters array. Will be -1 if not present.
-    const filterLocation = state.filters.findIndex(filter => filter == action.platform);
+    const filterLocation = state.filters.findIndex(filter => filter === action.platform);
     //If the item is already in the filters, remove it.
     if (filterLocation >= 0) {
       return Object.assign({}, state, {
@@ -91,6 +91,17 @@ export const reducer = (state = initialState, action) => {
         filters: [...state.filters, action.platform]
       });
     }
+  } 
+  else if (action.type === UPDATE_RATING) {
+    return Object.assign({}, state, {
+      games: state.games.map(game => {
+        if (game.id !== action.id) {
+          return {...game};
+        } else {
+          return {...game, userRating: action.rating};
+        }
+      })
+    })
   } else {
     return state;
   }

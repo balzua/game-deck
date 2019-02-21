@@ -16,3 +16,10 @@ export const filterPlatform = platform => ({
   type: FILTER_PLATFORM,
   platform
 });
+
+export const UPDATE_RATING = 'UPDATE_RATING';
+export const updateRating = (rating, id) => ({
+  type: UPDATE_RATING,
+  rating,
+  id
+});

@@ -25,7 +25,7 @@ export class LibraryItem extends React.Component {
             <Game {...this.props.game} />
             <div className="user-info">
               <div className="game-controls">
-                <Rating rating={this.props.game.userRating} />
+                <Rating id={this.props.game.id} />
                 <GameForm id={this.props.game.id} />
               </div>
               <DeleteButton id={this.props.game.id} />

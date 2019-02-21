@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Radar, Chart as JSC} from 'react-chartjs-2';
+import {Radar} from 'react-chartjs-2';
 
 export function Chart(props) {
   const chartData = {
