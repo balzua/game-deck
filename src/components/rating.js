@@ -4,6 +4,7 @@ import './styles/star.css';
 
 import {updateRating} from '../actions';
 
+
 export function Rating(props) {
   let ratedStars = [];
     for (let i = 0; i < 5; i++) {
