@@ -5,9 +5,7 @@ import App from './App';
 import {store} from '../store';
 
 it('renders without crashing', () => {
-  ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>, 
-  document.getElementById('root'));
-});
+  const div = document.createElement('div');
+  ReactDOM.render(<Provider store={store}><App /></Provider>, div);
+  ReactDOM.unmountComponentAtNode(div);
+}); 
