@@ -25,8 +25,8 @@ export function Modal(props) {
 }
 
 export const mapStateToProps = state => ({
-  display: state.app.modalDisplay,
-  content: state.app.modalContent
+  display: state.app.library.modalDisplay,
+  content: state.app.library.modalContent
 });
 
 export default connect(mapStateToProps)(Modal);

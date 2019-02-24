@@ -29,7 +29,7 @@ export class Controls extends React.Component {
 };
 
 const mapStateToProps = state => ({
-  platforms: state.app.platforms
+  platforms: state.app.library.platforms
 });
 
 export default connect(mapStateToProps)(Controls);

@@ -14,10 +14,10 @@ export function Stats(props) {
 };
 
 export const mapStateToProps = state => ({
-  favoriteGenre: state.app.libraryStats.favoriteGenre,
-  totalGames: state.app.libraryStats.totalGames,
-  totalCompleted: state.app.libraryStats.totalCompleted,
-  averageRating: state.app.libraryStats.averageRating
+  favoriteGenre: state.app.library.libraryStats.favoriteGenre,
+  totalGames: state.app.library.libraryStats.totalGames,
+  totalCompleted: state.app.library.libraryStats.totalCompleted,
+  averageRating: state.app.library.libraryStats.averageRating
 });
 
 export default connect(mapStateToProps)(Stats);

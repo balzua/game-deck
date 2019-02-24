@@ -4,6 +4,10 @@ export const deleteGame = id => ({
   id
 });
 
+export const DELETE_GAME_SUCCESS = 'DELETE_GAME_SUCCESS';
+
+export const DELETE_GAME_FAILURE = 'DELETE_GAME_FAILURE';
+
 export const UPDATE_STATUS = 'UPDATE_STATUS';
 export const updateStatus = (status, id) => ({
   type: UPDATE_STATUS,

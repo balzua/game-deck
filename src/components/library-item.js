@@ -39,7 +39,7 @@ export class LibraryItem extends React.Component {
 };
 
 const mapStateToProps = state => ({
-  filters: state.app.filters
+  filters: state.app.library.filters
 });
 
 export default connect(mapStateToProps)(LibraryItem);

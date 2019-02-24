@@ -1,4 +1,10 @@
 import {DELETE_GAME, UPDATE_STATUS, FILTER_PLATFORM, UPDATE_RATING} from '../actions';
+import {combineReducers} from 'redux';
+import {
+  DELETE_GAME_REQUEST,
+  DELETE_GAME_SUCCESS,
+  DELETE_GAME_FAILURE
+} from '../actions';
 
 const initialState = {
   "games": [
@@ -39,44 +45,56 @@ const initialState = {
       "status": "completed"
     }
   ],
-  "libraryStats": {
-    "favoriteGenre": "Role-Playing",
-    "totalGames": 3,
-    "totalCompleted": 1,
-    "averageRating": 4
-  },
-  "chartScores": {
-    "Action": 80,
-    "Puzzle": 50,
-    "Role-Playing": 95,
-    "Fighting": 20,
-    "Shooter": 73
-  },
-  "filters": ["XONE", "NS", "PS1"],
-  "modalDisplay": false,
-  "modalContent": "login",
-  "platforms": ["XONE", "NS", "PS1", "GCN", "PS4"]
+  "library": {
+    "libraryStats": {
+      "favoriteGenre": "Role-Playing",
+      "totalGames": 3,
+      "totalCompleted": 1,
+      "averageRating": 4
+    },
+    "chartScores": {
+      "Action": 80,
+      "Puzzle": 50,
+      "Role-Playing": 95,
+      "Fighting": 20,
+      "Shooter": 73
+    },
+    "filters": ["XONE", "NS", "PS1"],
+    "modalDisplay": false,
+    "modalContent": "login",
+    "platforms": ["XONE", "NS", "PS1", "GCN", "PS4"]
+  }
 };
 
-
-export const reducer = (state = initialState, action) => {
+export const games = (state = initialState.games, action) => {
   if (action.type === DELETE_GAME) {
-    return Object.assign({}, state, {
-      games: state.games.filter(game => game.id !== action.id)
-    });
+    return state.filter(game => game.id !== action.id)
   } 
   else if (action.type === UPDATE_STATUS) {
-    return Object.assign({}, state, {
-      games: state.games.map(game => {
-        if (game.id !== action.id) {
-          return {...game};
-        } else {
-          return {...game, status: action.status};
-        }
-      })
-    });
+    return state.map(game => {
+      if (game.id !== action.id) {
+        return {...game};
+      } else {
+        return {...game, status: action.status};
+      }
+    })
   } 
-  else if (action.type === FILTER_PLATFORM) {
+  else if (action.type === UPDATE_RATING) {
+    return state.map(game => {
+      if (game.id !== action.id) {
+        return {...game};
+      } else {
+        return {...game, userRating: action.rating};
+      }
+    })
+  }
+  else {
+    return state;
+  }
+}
+
+export const library = (state = initialState.library, action) => {
+  if (action.type === FILTER_PLATFORM) {
     //First, find the position of the filter in the filters array. Will be -1 if not present.
     const filterLocation = state.filters.findIndex(filter => filter === action.platform);
     //If the item is already in the filters, remove it.
@@ -92,17 +110,21 @@ export const reducer = (state = initialState, action) => {
       });
     }
   } 
-  else if (action.type === UPDATE_RATING) {
-    return Object.assign({}, state, {
-      games: state.games.map(game => {
-        if (game.id !== action.id) {
-          return {...game};
-        } else {
-          return {...game, userRating: action.rating};
-        }
-      })
-    })
-  } else {
+  else {
     return state;
   }
-};
+}
+
+export const reducer = combineReducers({
+  games,
+  library
+})
+
+
+
+
+/* export const reducer = (state = initialState, action) => {
+  
+  
+  
+}; */
