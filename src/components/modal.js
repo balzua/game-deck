@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import RegistrationForm from './registration-form';
 import LoginForm from './login-form';
 import './styles/modal.css';
+import { toggleModal } from '../actions';
 
 export function Modal(props) {
   let content;
@@ -13,7 +14,8 @@ export function Modal(props) {
   }
   if (props.display) {
     return (
-      <div className="modal">
+      // If the user clicks the modal, first verify they clicked outside the content zone, and if so toggle the modal to remove it.
+      <div className="modal" onClick={(e) => e.target.className === 'modal' ? props.dispatch(toggleModal()) : null}>
         <div className="modal-content">
           {content}
         </div>

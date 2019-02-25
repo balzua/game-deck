@@ -18,19 +18,26 @@ export class DeleteButton extends React.Component {
   }
   
   deleteGame() {
-    this.flipDeleting();
     this.props.dispatch(deleteGame(this.props.id));
   }
   
   render() {
-    if (this.state.deleting) {
+    if (this.props.deleteRequest) {
+      return (
+        <div className="delete-button">
+          Deleting...
+        </div>
+      );
+    } 
+    else if (this.state.deleting) {
       return (
         <div className="delete-button">
           <button value="delete" onClick={() => this.deleteGame()}>Delete</button>
           <button value="delete" onClick={() => this.flipDeleting()}>Cancel</button>
         </div>
       );
-    } else {
+    }
+    else {
       return (
         <div className="delete-button">
           <button value="delete" onClick={() => this.flipDeleting()}>Remove Game</button>
@@ -40,4 +47,8 @@ export class DeleteButton extends React.Component {
   }
 };
 
-export default connect()(DeleteButton);
+export const mapStateToProps = (state, ownProps) => ({
+  deleteRequest: state.app.games.find(game => game.id === ownProps.id).deleteRequest
+})
+
+export default connect(mapStateToProps)(DeleteButton);

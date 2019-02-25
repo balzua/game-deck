@@ -17,8 +17,14 @@ function filterGames(game, filters) {
   }
   return false;
 }
+
+
 export class LibraryItem extends React.Component {
   render() {
+    let error;
+    if (this.props.game.error) {
+      error = <span className="error">{this.props.game.error}</span>;
+    }
     if (filterGames(this.props.game, this.props.filters)) {
       return (
         <div className="library-item">
@@ -30,6 +36,7 @@ export class LibraryItem extends React.Component {
               </div>
               <DeleteButton id={this.props.game.id} />
             </div>
+            {error}
         </div>
       );
     } else {

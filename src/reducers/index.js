@@ -1,4 +1,4 @@
-import {DELETE_GAME, UPDATE_STATUS, FILTER_PLATFORM, UPDATE_RATING} from '../actions';
+import {TOGGLE_MODAL, UPDATE_STATUS, FILTER_PLATFORM, UPDATE_RATING} from '../actions';
 import {combineReducers} from 'redux';
 import {
   DELETE_GAME_REQUEST,
@@ -67,9 +67,27 @@ const initialState = {
 };
 
 export const games = (state = initialState.games, action) => {
-  if (action.type === DELETE_GAME) {
+  if (action.type === DELETE_GAME_REQUEST) {
+    return state.map(game => {
+      if (game.id !== action.id) {
+        return {...game}
+      } else {
+        return {...game, deleteRequest: true}
+      }
+    });
+  }
+  else if (action.type === DELETE_GAME_SUCCESS) {
     return state.filter(game => game.id !== action.id)
   } 
+  else if (action.type === DELETE_GAME_FAILURE) {
+    return state.map(game => {
+      if (game.id !== action.id) {
+        return {...game}
+      } else {
+        return {...game, error: action.error}
+      }
+    });
+  }
   else if (action.type === UPDATE_STATUS) {
     return state.map(game => {
       if (game.id !== action.id) {
@@ -110,6 +128,12 @@ export const library = (state = initialState.library, action) => {
       });
     }
   } 
+  else if (action.type === TOGGLE_MODAL) {
+    return Object.assign({}, state, {
+      modalDisplay: !state.modalDisplay,
+      modalContent: action.content
+    })
+  }
   else {
     return state;
   }
