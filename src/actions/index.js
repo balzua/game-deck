@@ -1,3 +1,6 @@
+import {API_BASE_URL, normalizeResponseErrors} from '../config';
+import {SubmissionError} from 'redux-form';
+
 export const DELETE_GAME_REQUEST = 'DELETE_GAME_REQUEST';
 export const deleteGameRequest = id => ({
   type: DELETE_GAME_REQUEST,
@@ -17,27 +20,48 @@ export const deleteGameFailure = (id, error) => ({
   error
 });
 
-// Thunk for deleting games.
-export const deleteGame = id => {
-  return (dispatch) => {
-    // First dispatch deleteGameRequest. This informs the user that deletion is in progress.
-    dispatch(deleteGameRequest(id));
-    // Next make the request to the server.
-    return fetch(`http://localhost:8080/games/${id}`, {
-      method: "DELETE",
+export const registerUser = user => dispatch => {
+  return fetch(`${API_BASE_URL}/users`, {
+      method: 'POST',
       headers: {
-        
-      } 
-    })
-    .then(response => {
-      if (response.ok) {
-        dispatch(deleteGameSuccess(id));
-      }
-    }, error => {
-      console.log(error)
-      dispatch(deleteGameFailure(id, error));
-    });
-  }
+          'content-type': 'application/json'
+      },
+      body: JSON.stringify(user)
+  })
+  .then(res => normalizeResponseErrors(res))
+  .then(res => res.json())
+  .catch(err => {
+    const {reason, message, location} = err;
+    if (reason === 'ValidationError') {
+        // Convert ValidationErrors into SubmissionErrors for Redux Form
+        return Promise.reject(
+            new SubmissionError({
+                [location]: message
+            })
+        );
+    }
+  });
+};
+
+// Thunk for deleting games.
+export const deleteGame = id => dispatch => {
+  // First dispatch deleteGameRequest. This informs the user that deletion is in progress.
+  dispatch(deleteGameRequest(id));
+  // Next make the request to the server.
+  return fetch(`http://localhost:8080/games/${id}`, {
+    method: "DELETE",
+    headers: {
+
+    } 
+  })
+  .then(response => {
+    if (response.ok) {
+      dispatch(deleteGameSuccess(id));
+    }
+  }, error => {
+    console.log(error)
+    dispatch(deleteGameFailure(id, error));
+  });
 }
 
 export const TOGGLE_MODAL = 'TOGGLE_MODAL';
