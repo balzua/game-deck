@@ -13,6 +13,7 @@ export function Header(props) {
       <nav>
         <ul>
           <li><a href='#' onClick={() => props.dispatch(toggleModal('registration'))}>Register</a></li>
+          <li><a href='#' onClick={() => props.dispatch(toggleModal('login'))}>Login</a></li>
           <li><Link to='/library'>Library</Link></li>
           <li><Link to='/recommendations'>Recommendations</Link></li>
           <li><Link to='/logout'>Logout</Link></li>

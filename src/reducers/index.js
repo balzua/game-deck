@@ -6,6 +6,13 @@ import {
   DELETE_GAME_FAILURE
 } from '../actions';
 
+import {
+  AUTH_REQUEST,
+  AUTH_SUCCESS,
+  AUTH_FAILURE,
+  SET_AUTH_TOKEN
+} from '../actions';
+
 const initialState = {
   "games": [
     {
@@ -63,10 +70,16 @@ const initialState = {
     "modalDisplay": false,
     "modalContent": "login",
     "platforms": ["XONE", "NS", "PS1", "GCN", "PS4"]
+  },
+  "authentication": {
+    "loading": false,
+    "error": null,
+    "authToken": null,
+    "user": null
   }
 };
 
-export const games = (state = initialState.games, action) => {
+const games = (state = initialState.games, action) => {
   if (action.type === DELETE_GAME_REQUEST) {
     return state.map(game => {
       if (game.id !== action.id) {
@@ -111,7 +124,7 @@ export const games = (state = initialState.games, action) => {
   }
 }
 
-export const library = (state = initialState.library, action) => {
+const library = (state = initialState.library, action) => {
   if (action.type === FILTER_PLATFORM) {
     //First, find the position of the filter in the filters array. Will be -1 if not present.
     const filterLocation = state.filters.findIndex(filter => filter === action.platform);
@@ -139,9 +152,38 @@ export const library = (state = initialState.library, action) => {
   }
 }
 
+const authentication = (state = initialState.authentication, action) => {
+  if (action.type === AUTH_REQUEST) {
+    return Object.assign({}, state, {
+      loading: true
+    });
+  }
+  else if (action.type === AUTH_SUCCESS) {
+    return Object.assign({}, state, {
+      loading: false,
+      user: action.currentUser.user
+    });
+  }
+  else if (action.type === AUTH_FAILURE) {
+    return Object.assign({}, state, {
+      loading: false,
+      error: action.message
+    });
+  }
+  else if (action.type === SET_AUTH_TOKEN) {
+    return Object.assign({}, state, {
+      authToken: action.authToken
+    });
+  }
+  else {
+    return state;
+  }
+};
+
 export const reducer = combineReducers({
   games,
-  library
+  library,
+  authentication
 })
 
 
