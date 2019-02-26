@@ -143,7 +143,8 @@ const authentication = (state = initialState.authentication, action) => {
   }
   else if (action.type === SET_AUTH_TOKEN) {
     return Object.assign({}, state, {
-      authToken: action.authToken
+      authToken: action.authToken,
+      user: action.currentUser
     });
   }
   else if (action.type === CLEAR_AUTH_TOKEN) {

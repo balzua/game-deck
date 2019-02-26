@@ -79,17 +79,17 @@ export const login = user => dispatch => {
 
 const storeAuthInfo = (authToken, dispatch) => {
   const decodedToken = jwtDecode(authToken);
-  console.log(decodedToken);
-  dispatch(setAuthToken(authToken));
+  dispatch(setAuthToken(authToken, decodedToken.user.username));
   dispatch(authSuccess(decodedToken.user.username));
   saveAuthToken(authToken);
 };
 
 
 export const SET_AUTH_TOKEN = 'SET_AUTH_TOKEN';
-export const setAuthToken = authToken => ({
+export const setAuthToken = (authToken, user) => ({
     type: SET_AUTH_TOKEN,
-    authToken
+    authToken,
+    currentUser: user
 });
 
 export const AUTH_REQUEST = 'AUTH_REQUEST';
@@ -143,14 +143,15 @@ export const refreshAuthToken = () => (dispatch, getState) => {
 };
 
 // Thunk for deleting games.
-export const deleteGame = id => dispatch => {
+export const deleteGame = id => (dispatch, getState) => {
   // First dispatch deleteGameRequest. This informs the user that deletion is in progress.
   dispatch(deleteGameRequest(id));
+  const authToken = getState().app.authentication.authToken;
   // Next make the request to the server.
-  return fetch(`http://localhost:8080/games/${id}`, {
+  return fetch(`{$API_BASE_URL}/games/${id}`, {
     method: "DELETE",
     headers: {
-
+      Authorization: `Bearer ${authToken}`
     } 
   })
   .then(response => {
