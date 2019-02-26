@@ -79,8 +79,9 @@ export const login = user => dispatch => {
 
 const storeAuthInfo = (authToken, dispatch) => {
   const decodedToken = jwtDecode(authToken);
+  console.log(decodedToken);
   dispatch(setAuthToken(authToken));
-  dispatch(authSuccess(decodedToken.user));
+  dispatch(authSuccess(decodedToken.user.username));
   saveAuthToken(authToken);
 };
 
@@ -112,6 +113,11 @@ export const CLEAR_AUTH_TOKEN = 'CLEAR_AUTH_TOKEN';
 export const clearAuth = () => ({
   type: CLEAR_AUTH_TOKEN
 });
+
+export const logout = () => (dispatch) => {
+  dispatch(clearAuth());
+  clearAuthToken();
+}
 
 export const refreshAuthToken = () => (dispatch, getState) => {
     dispatch(authRequest());
@@ -182,3 +188,42 @@ export const updateRating = (rating, id) => ({
   rating,
   id
 });
+
+export const LIBRARY_REQUEST = 'LIBRARY_REQUEST';
+export const libraryRequest = () => ({
+  type: LIBRARY_REQUEST
+});
+
+export const LIBRARY_SUCCESS = 'LIBRARY_SUCCESS';
+export const librarySuccess = (games) => ({
+  type: LIBRARY_SUCCESS,
+  games
+});
+
+export const LIBRARY_FAILURE = 'LIBRARY_FAILURE';
+export const libraryFailure = (error) => ({
+  type: LIBRARY_FAILURE,
+  error
+});
+
+export const fetchLibrary = user => (dispatch, getState) => {
+  //Update the state to display indicator that the library is loading.
+  dispatch(libraryRequest());
+  //Perform the API call to get the library of the user
+  const authToken = getState().app.authentication.authToken;
+  return fetch(`${API_BASE_URL}/library/${user}`, {
+    method: 'GET',
+      headers: {
+          // Provide our existing token as credentials to get a new one
+          Authorization: `Bearer ${authToken}`
+      }
+  })
+  .then(res => normalizeResponseErrors(res))
+  .then(res => res.json())
+  .then(library => {
+    dispatch(librarySuccess(library.games))
+  })
+  .catch(err => {
+    dispatch(libraryFailure(err))
+  });
+};

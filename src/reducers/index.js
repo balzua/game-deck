@@ -14,45 +14,12 @@ import {
   SET_AUTH_TOKEN
 } from '../actions';
 
+import {
+  LIBRARY_SUCCESS
+} from '../actions';
+
 const initialState = {
-  "games": [
-    {
-      "title": "Resident Evil 2",
-      "id": 20,
-      "description": "A remake of the 1998 survival horror classic, Resident Evil 2.",
-      "releaseDate": "January 25, 2019",
-      "rating": "M",
-      "genres": ['Shooter', 'Action/Adventure'],
-      "platforms": ['PC', 'XONE', 'PS4'],
-      "image": "https://www.giantbomb.com/api/image/scale_small/3049558-box_re2.png",
-      "userRating": 4,
-      "status": "wishlist"
-    },
-    {
-      "title": "Final Fantasy IX",
-      "id": 300,
-      "description": "Zidane Tribal and his troupe attempt to abduct Princess Garnet of Alexandria in this throwback to the classics of the series.",
-      "releaseDate": "July 7, 2000",
-      "rating": "T",
-      "genres": ['Role-Playing', 'Card Game'],
-      "platforms": ['PC', 'PS1', 'PS3', 'PS4', 'NS'],
-      "image": "https://www.giantbomb.com/api/image/scale_small/1814634-box_ff9.png",
-      "userRating": 5,
-      "status": "playing"
-    },
-    {
-      "title": "God of War",
-      "id": 16,
-      "description": "God of War is a soft reboot on the franchise of the same name. It sees Kratos and his son Atreus traverse a world of Norse myths.",
-      "releaseDate": "April 20, 2018",
-      "rating": "M",
-      "genres": ['Action'],
-      "platforms": ['PS4'],
-      "image": "https://www.giantbomb.com/api/image/scale_small/3012241-god%20of%20war%20%28ps4%29.jpg",
-      "userRating": 3,
-      "status": "completed"
-    }
-  ],
+  "games": [],
   "library": {
     "libraryStats": {
       "favoriteGenre": "Role-Playing",
@@ -67,7 +34,7 @@ const initialState = {
       "Fighting": 20,
       "Shooter": 73
     },
-    "filters": ["XONE", "NS", "PS1"],
+    "filters": ["XONE", "NS"],
     "modalDisplay": false,
     "modalContent": "login",
     "platforms": ["XONE", "NS", "PS1", "GCN", "PS4"]
@@ -81,7 +48,10 @@ const initialState = {
 };
 
 const games = (state = initialState.games, action) => {
-  if (action.type === DELETE_GAME_REQUEST) {
+  if (action.type === LIBRARY_SUCCESS) {
+    return Object.assign([], state, [...action.games]);
+  }
+  else if (action.type === DELETE_GAME_REQUEST) {
     return state.map(game => {
       if (game.id !== action.id) {
         return {...game}
@@ -162,7 +132,7 @@ const authentication = (state = initialState.authentication, action) => {
   else if (action.type === AUTH_SUCCESS) {
     return Object.assign({}, state, {
       loading: false,
-      user: action.currentUser.user
+      user: action.currentUser
     });
   }
   else if (action.type === AUTH_FAILURE) {

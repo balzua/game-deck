@@ -11,7 +11,7 @@ export default function Game(props) {
   return (
     <React.Fragment>
       <div className="game-title">
-        <h3>{props.title}</h3>
+        <h3>{props.name}</h3>
       </div>
       <div className="game-img">
         <img src={props.image} alt="Game Box Art" />

@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {toggleModal} from '../actions';
+import {toggleModal, logout} from '../actions';
 import {Link} from 'react-router-dom';
 import './styles/header.css';
 
@@ -13,7 +13,7 @@ export function Header(props) {
       <ul>
         <li><Link to='/library'>Library</Link></li>
         <li><Link to='/recommendations'>Recommendations</Link></li>
-        <li><Link to='/logout'>Logout</Link></li>
+        <li><a href='#' onClick={() => props.dispatch(logout())}>Logout</a></li>
       </ul>
     );
   }
