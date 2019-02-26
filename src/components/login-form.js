@@ -2,14 +2,15 @@ import React from 'react';
 import {reduxForm, Field} from 'redux-form';
 import {required, nonEmpty} from '../validators';
 import Input from './input';
-import {login} from '../actions';
+import {login, toggleModal} from '../actions';
 
 export class LoginForm extends React.Component {
   
   onSubmit(values) {
     const {username, password} = values;
     const user = {username, password};
-    return this.props.dispatch(login(user));
+    return this.props.dispatch(login(user))
+    .then(() => this.props.dispatch(toggleModal()));
   }
   
   render() {

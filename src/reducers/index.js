@@ -10,6 +10,7 @@ import {
   AUTH_REQUEST,
   AUTH_SUCCESS,
   AUTH_FAILURE,
+  CLEAR_AUTH_TOKEN,
   SET_AUTH_TOKEN
 } from '../actions';
 
@@ -173,6 +174,12 @@ const authentication = (state = initialState.authentication, action) => {
   else if (action.type === SET_AUTH_TOKEN) {
     return Object.assign({}, state, {
       authToken: action.authToken
+    });
+  }
+  else if (action.type === CLEAR_AUTH_TOKEN) {
+    return Object.assign({}, state, {
+      authToken: null,
+      user: null
     });
   }
   else {
