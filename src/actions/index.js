@@ -228,3 +228,20 @@ export const fetchLibrary = user => (dispatch, getState) => {
     dispatch(libraryFailure(err))
   });
 };
+
+export const addGames = guids => (dispatch, getState) => {
+  const authToken = getState().app.authentication.authToken;
+  console.log(guids);
+  return fetch(`${API_BASE_URL}/games`, {
+    method: 'POST',
+      headers: {
+          // Provide our existing token as credentials to get a new one
+        Authorization: `Bearer ${authToken}`,
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(guids)
+  })
+  .then(res => normalizeResponseErrors(res))
+  .catch(err => {
+  });
+};

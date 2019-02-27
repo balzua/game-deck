@@ -1,0 +1,4 @@
+.add-game {
+  display: flex;
+  justify-content: space-between;
+}
