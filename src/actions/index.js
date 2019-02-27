@@ -81,7 +81,7 @@ const storeAuthInfo = (authToken, dispatch) => {
   const decodedToken = jwtDecode(authToken);
   dispatch(setAuthToken(authToken, decodedToken.user.username));
   dispatch(authSuccess(decodedToken.user.username));
-  saveAuthToken(authToken);
+  saveAuthToken(authToken, decodedToken.user.username);
 };
 
 

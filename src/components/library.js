@@ -7,10 +7,6 @@ import './styles/library.css';
 
 export class Library extends React.Component {
   
-  constructor(props) {
-    super(props);
-  }
-  
   componentDidMount() {
     console.log(`Dispatching library fetch with user ${this.props.user}`);
     this.props.dispatch(fetchLibrary(this.props.user));

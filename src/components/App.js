@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React  from 'react';
+import {connect} from 'react-redux';
+import {refreshAuthToken} from '../actions';
 import Header from './header';
 import Footer from './footer';
 import Library from './library';
@@ -8,7 +10,37 @@ import Recommendations from './recommendations';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import './styles/App.css';
 
-class App extends Component {
+export class App extends React.Component {
+  
+    componentDidUpdate(prevProps) {
+        if (!prevProps.loggedIn && this.props.loggedIn) {
+            // When we are logged in, refresh the auth token periodically
+            this.startPeriodicRefresh();
+        } else if (prevProps.loggedIn && !this.props.loggedIn) {
+            // Stop refreshing when we log out
+            this.stopPeriodicRefresh();
+        }
+    }
+
+    componentWillUnmount() {
+        this.stopPeriodicRefresh();
+    }
+
+    startPeriodicRefresh() {
+        this.refreshInterval = setInterval(
+            () => this.props.dispatch(refreshAuthToken()),
+            60 * 60 * 1000 // One hour
+        );
+    }
+
+    stopPeriodicRefresh() {
+        if (!this.refreshInterval) {
+            return;
+        }
+
+        clearInterval(this.refreshInterval);
+    }
+  
   render() {
     return (
       // Render the basic header and footer.
@@ -29,4 +61,9 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  loggedIn: state.app.authentication.user,
+  hasAuthToken: state.app.authentication.authToken
+})
+
+export default connect(mapStateToProps)(App);
