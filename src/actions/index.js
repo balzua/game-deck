@@ -148,7 +148,7 @@ export const deleteGame = id => (dispatch, getState) => {
   dispatch(deleteGameRequest(id));
   const authToken = getState().app.authentication.authToken;
   // Next make the request to the server.
-  return fetch(`{$API_BASE_URL}/games/${id}`, {
+  return fetch(`${API_BASE_URL}/games/${id}`, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${authToken}`
@@ -170,12 +170,33 @@ export const toggleModal = (content = '') => ({
   content
 })
 
-export const UPDATE_STATUS = 'UPDATE_STATUS';
-export const updateStatus = (status, id) => ({
-  type: UPDATE_STATUS,
+export const STATUS_SUCCESS = 'STATUS_SUCCESS';
+export const statusSuccess = (status, id) => ({
+  type: STATUS_SUCCESS,
   id,
   status
 });
+
+export const updateStatus = (status, id) => (dispatch, getState) => {
+  console.log('updateStatus');
+  const authToken = getState().app.authentication.authToken;
+  const update = {
+    libraryStatus: status,
+    id
+  };
+  return fetch(`${API_BASE_URL}/games/${id}`, {
+    method: 'PUT',
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+      'content-type': 'application/json'
+    },
+    body: JSON.stringify(update)
+  })
+  .then(dispatch(statusSuccess(status, id)))
+  .catch(err => {
+    dispatch(ratingFailure(id, err))
+  });
+};
 
 export const FILTER_PLATFORM = 'FILTER_PLATFORM';
 export const filterPlatform = platform => ({
@@ -183,12 +204,39 @@ export const filterPlatform = platform => ({
   platform
 });
 
-export const UPDATE_RATING = 'UPDATE_RATING';
-export const updateRating = (rating, id) => ({
-  type: UPDATE_RATING,
+export const RATING_SUCCESS = 'RATING_SUCCESS';
+export const ratingSuccess = (rating, id) => ({
+  type: RATING_SUCCESS,
   rating,
   id
 });
+
+export const RATING_FAILURE = 'RATING_FAILURE';
+export const ratingFailure = (id, error) => ({
+  type: RATING_FAILURE,
+  id,
+  error
+});
+
+export const updateRating = (rating, id) => (dispatch, getState) => {
+  const authToken = getState().app.authentication.authToken;
+  const update = {
+    userRating: rating,
+    id
+  };
+  return fetch(`${API_BASE_URL}/games/${id}`, {
+    method: 'PUT',
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+      'content-type': 'application/json'
+    },
+    body: JSON.stringify(update)
+  })
+  .then(dispatch(ratingSuccess(rating, id)))
+  .catch(err => {
+    dispatch(ratingFailure(id, err))
+  });
+};
 
 export const LIBRARY_REQUEST = 'LIBRARY_REQUEST';
 export const libraryRequest = () => ({

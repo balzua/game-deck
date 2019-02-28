@@ -21,7 +21,7 @@ export function GameForm(props) {
 };
 
 export const mapStateToProps = (state, ownProps) => ({
-  status: state.app.games.find(game => game.id === ownProps.id).status
+  status: state.app.games.find(game => game.id === ownProps.id).libraryStatus
 });
 
 export default connect(mapStateToProps)(GameForm);

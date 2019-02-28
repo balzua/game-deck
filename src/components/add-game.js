@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {addGames} from '../actions';
+import {addGames, fetchLibrary} from '../actions';
 import Async from 'react-select';
 import './styles/add-game.css';
 import {API_BASE_URL, debounce} from '../tools';
@@ -21,6 +21,8 @@ export class AddGame extends React.Component {
     e.preventDefault();
     const guids = this.state.selectedOption.map(game => game.value);
     this.props.dispatch(addGames({guid: guids}));
+    this.setState({ selectedOption: [] });
+    this.props.dispatch(fetchLibrary(this.props.user));
   }
   
   printValues() {
@@ -67,7 +69,8 @@ export class AddGame extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  authToken: state.app.authentication.authToken
+  authToken: state.app.authentication.authToken,
+  user: state.app.authentication.user
 });
 
 export default connect(mapStateToProps)(AddGame);

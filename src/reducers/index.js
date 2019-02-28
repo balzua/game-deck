@@ -1,4 +1,4 @@
-import {TOGGLE_MODAL, UPDATE_STATUS, FILTER_PLATFORM, UPDATE_RATING} from '../actions';
+import {TOGGLE_MODAL, STATUS_SUCCESS, FILTER_PLATFORM, RATING_SUCCESS} from '../actions';
 import {combineReducers} from 'redux';
 import {
   DELETE_GAME_REQUEST,
@@ -72,7 +72,7 @@ const games = (state = initialState.games, action) => {
       }
     });
   }
-  else if (action.type === UPDATE_STATUS) {
+  else if (action.type === STATUS_SUCCESS) {
     return state.map(game => {
       if (game.id !== action.id) {
         return {...game};
@@ -81,7 +81,7 @@ const games = (state = initialState.games, action) => {
       }
     })
   } 
-  else if (action.type === UPDATE_RATING) {
+  else if (action.type === RATING_SUCCESS) {
     return state.map(game => {
       if (game.id !== action.id) {
         return {...game};
@@ -163,12 +163,3 @@ export const reducer = combineReducers({
   library,
   authentication
 })
-
-
-
-
-/* export const reducer = (state = initialState, action) => {
-  
-  
-  
-}; */

@@ -18,7 +18,7 @@ export function Platform(props) {
     "N64": 'n64',
     "PS4": 'ps4',
     "XONE": 'x1',
-    "NS": 'ns',
+    "NSW": 'ns',
     "WiiU": 'wiiu'
   };
   
@@ -42,7 +42,7 @@ export function Platform(props) {
 
 const mapStateToProps = (state, ownProps) => ({
   //Search the filters array for this platform's name. If it is not present, disabled will be true, false otherwise.
-  disabled: !Boolean(state.app.library.filters.find(filter => filter === ownProps.name))
+  disabled: Boolean(state.app.library.filters.find(filter => filter === ownProps.name))
 });
 
 export default connect(mapStateToProps)(Platform);
