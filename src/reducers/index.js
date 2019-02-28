@@ -1,4 +1,4 @@
-import {TOGGLE_MODAL, UPDATE_STATUS, FILTER_PLATFORM, UPDATE_RATING} from '../actions';
+import {TOGGLE_MODAL, STATUS_SUCCESS, FILTER_PLATFORM, RATING_SUCCESS} from '../actions';
 import {combineReducers} from 'redux';
 import {
   DELETE_GAME_REQUEST,
@@ -6,45 +6,20 @@ import {
   DELETE_GAME_FAILURE
 } from '../actions';
 
+import {
+  AUTH_REQUEST,
+  AUTH_SUCCESS,
+  AUTH_FAILURE,
+  CLEAR_AUTH_TOKEN,
+  SET_AUTH_TOKEN
+} from '../actions';
+
+import {
+  LIBRARY_SUCCESS
+} from '../actions';
+
 const initialState = {
-  "games": [
-    {
-      "title": "Resident Evil 2",
-      "id": 20,
-      "description": "A remake of the 1998 survival horror classic, Resident Evil 2.",
-      "releaseDate": "January 25, 2019",
-      "rating": "M",
-      "genres": ['Shooter', 'Action/Adventure'],
-      "platforms": ['PC', 'XONE', 'PS4'],
-      "image": "https://www.giantbomb.com/api/image/scale_small/3049558-box_re2.png",
-      "userRating": 4,
-      "status": "wishlist"
-    },
-    {
-      "title": "Final Fantasy IX",
-      "id": 300,
-      "description": "Zidane Tribal and his troupe attempt to abduct Princess Garnet of Alexandria in this throwback to the classics of the series.",
-      "releaseDate": "July 7, 2000",
-      "rating": "T",
-      "genres": ['Role-Playing', 'Card Game'],
-      "platforms": ['PC', 'PS1', 'PS3', 'PS4', 'NS'],
-      "image": "https://www.giantbomb.com/api/image/scale_small/1814634-box_ff9.png",
-      "userRating": 5,
-      "status": "playing"
-    },
-    {
-      "title": "God of War",
-      "id": 16,
-      "description": "God of War is a soft reboot on the franchise of the same name. It sees Kratos and his son Atreus traverse a world of Norse myths.",
-      "releaseDate": "April 20, 2018",
-      "rating": "M",
-      "genres": ['Action'],
-      "platforms": ['PS4'],
-      "image": "https://www.giantbomb.com/api/image/scale_small/3012241-god%20of%20war%20%28ps4%29.jpg",
-      "userRating": 3,
-      "status": "completed"
-    }
-  ],
+  "games": [],
   "library": {
     "libraryStats": {
       "favoriteGenre": "Role-Playing",
@@ -59,15 +34,24 @@ const initialState = {
       "Fighting": 20,
       "Shooter": 73
     },
-    "filters": ["XONE", "NS", "PS1"],
+    "filters": ["XONE", "NS"],
     "modalDisplay": false,
     "modalContent": "login",
     "platforms": ["XONE", "NS", "PS1", "GCN", "PS4"]
+  },
+  "authentication": {
+    "loading": false,
+    "error": null,
+    "authToken": null,
+    "user": null
   }
 };
 
-export const games = (state = initialState.games, action) => {
-  if (action.type === DELETE_GAME_REQUEST) {
+const games = (state = initialState.games, action) => {
+  if (action.type === LIBRARY_SUCCESS) {
+    return Object.assign([], state, [...action.games]);
+  }
+  else if (action.type === DELETE_GAME_REQUEST) {
     return state.map(game => {
       if (game.id !== action.id) {
         return {...game}
@@ -88,7 +72,7 @@ export const games = (state = initialState.games, action) => {
       }
     });
   }
-  else if (action.type === UPDATE_STATUS) {
+  else if (action.type === STATUS_SUCCESS) {
     return state.map(game => {
       if (game.id !== action.id) {
         return {...game};
@@ -97,7 +81,7 @@ export const games = (state = initialState.games, action) => {
       }
     })
   } 
-  else if (action.type === UPDATE_RATING) {
+  else if (action.type === RATING_SUCCESS) {
     return state.map(game => {
       if (game.id !== action.id) {
         return {...game};
@@ -111,7 +95,7 @@ export const games = (state = initialState.games, action) => {
   }
 }
 
-export const library = (state = initialState.library, action) => {
+const library = (state = initialState.library, action) => {
   if (action.type === FILTER_PLATFORM) {
     //First, find the position of the filter in the filters array. Will be -1 if not present.
     const filterLocation = state.filters.findIndex(filter => filter === action.platform);
@@ -139,16 +123,43 @@ export const library = (state = initialState.library, action) => {
   }
 }
 
+const authentication = (state = initialState.authentication, action) => {
+  if (action.type === AUTH_REQUEST) {
+    return Object.assign({}, state, {
+      loading: true
+    });
+  }
+  else if (action.type === AUTH_SUCCESS) {
+    return Object.assign({}, state, {
+      loading: false,
+      user: action.currentUser
+    });
+  }
+  else if (action.type === AUTH_FAILURE) {
+    return Object.assign({}, state, {
+      loading: false,
+      error: action.message
+    });
+  }
+  else if (action.type === SET_AUTH_TOKEN) {
+    return Object.assign({}, state, {
+      authToken: action.authToken,
+      user: action.currentUser
+    });
+  }
+  else if (action.type === CLEAR_AUTH_TOKEN) {
+    return Object.assign({}, state, {
+      authToken: null,
+      user: null
+    });
+  }
+  else {
+    return state;
+  }
+};
+
 export const reducer = combineReducers({
   games,
-  library
+  library,
+  authentication
 })
-
-
-
-
-/* export const reducer = (state = initialState, action) => {
-  
-  
-  
-}; */

@@ -1,9 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
+import {connect} from 'react-redux';
+import {fetchLibrary} from '../actions';
 import GameList from './game-list';
 import LibraryOptions from './library-options';
 import './styles/library.css';
 
-export default class Library extends Component {
+export class Library extends React.Component {
+  
+  componentDidMount() {
+    console.log(`Dispatching library fetch with user ${this.props.user}`);
+    this.props.dispatch(fetchLibrary(this.props.user));
+  }
+  
   render() {
     return (
       <div className="container">
@@ -13,3 +21,9 @@ export default class Library extends Component {
     );
   }
 };
+
+const mapStateToProps = state => ({
+  user: state.app.authentication.user
+});
+
+export default connect(mapStateToProps)(Library);

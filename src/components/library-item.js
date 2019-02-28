@@ -7,11 +7,11 @@ import Rating from './rating';
 import GameForm from './game-form';
 import DeleteButton from './delete-button';
 
-//Helper function, returns true if at least one of the game's platforms is in the list of filters.
-//Returns false if none of the game's platforms are in the list of filters (game should not be displayed).
+//Helper function, returns true if one of the game's platforms are NOT in the list of filters
+//Returns false if all of the game's platforms are in the list of filters (game should not be displayed).
 function filterGames(game, filters) {
   for (let i = 0; i < game.platforms.length; i++) {
-    if (filters.find(item => item === game.platforms[i])) {
+    if (!filters.find(item => item === game.platforms[i])) {
       return true;
     }
   }
