@@ -290,6 +290,7 @@ export const addGames = guids => (dispatch, getState) => {
       body: JSON.stringify(guids)
   })
   .then(res => normalizeResponseErrors(res))
+  .then(res => console.log(res))
   .catch(err => {
   });
 };

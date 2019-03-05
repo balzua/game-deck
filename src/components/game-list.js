@@ -6,7 +6,6 @@ import LibraryItem from './library-item';
 import RecommendationItem from './recommendation-item';
 
 export function GameList(props) {
-  console.log("render");
   let games;
   if (props.type === "library") {
     games = props.games.map((game, index) => 
@@ -17,7 +16,6 @@ export function GameList(props) {
       <RecommendationItem game={game} key={index} />
     );
   }
-  console.log(games);
   return (
     <div className="items">
       {games}

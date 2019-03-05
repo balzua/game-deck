@@ -24,10 +24,7 @@ export class AddGame extends React.Component {
     this.setState({ selectedOption: [] });
     this.props.dispatch(fetchLibrary(this.props.user));
   }
-  
-  printValues() {
-    console.log(this.state.value);
-  }
+
   
   getResults(input) {
     if (!input) {
@@ -41,7 +38,6 @@ export class AddGame extends React.Component {
     .then(res => res.json())
     .then(res => {
       this.setState({games: res});
-      console.log(this.state.games);
     });
   }
   
