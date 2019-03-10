@@ -10,7 +10,12 @@ const fullReducer = combineReducers({
   app: reducer
 })
 
-const store = createStore(fullReducer, applyMiddleware(thunk));
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
+const store = createStore(fullReducer, /* preloadedState, */ composeEnhancers(
+    applyMiddleware(thunk)
+));
+
+//const store = createStore(fullReducer, applyMiddleware(thunk));
 
 const authToken = loadAuthToken();
 const user = loadUser();
