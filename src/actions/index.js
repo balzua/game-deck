@@ -193,6 +193,7 @@ export const updateStatus = (status, id) => (dispatch, getState) => {
     body: JSON.stringify(update)
   })
   .then(dispatch(statusSuccess(status, id)))
+  .then(dispatch(updateLibraryStats(getState().app.games)))
   .catch(err => {
     dispatch(ratingFailure(id, err))
   });
@@ -233,6 +234,7 @@ export const updateRating = (rating, id) => (dispatch, getState) => {
     body: JSON.stringify(update)
   })
   .then(dispatch(ratingSuccess(rating, id)))
+  .then(dispatch(updateLibraryStats(getState().app.games)))
   .catch(err => {
     dispatch(ratingFailure(id, err))
   });
@@ -244,15 +246,21 @@ export const libraryRequest = () => ({
 });
 
 export const LIBRARY_SUCCESS = 'LIBRARY_SUCCESS';
-export const librarySuccess = (games) => ({
+export const librarySuccess = (library) => ({
   type: LIBRARY_SUCCESS,
-  games
+  library
 });
 
 export const LIBRARY_FAILURE = 'LIBRARY_FAILURE';
 export const libraryFailure = (error) => ({
   type: LIBRARY_FAILURE,
   error
+});
+
+export const UPDATE_LIBRARY_STATS = 'UPDATE_LIBRARY_STATS';
+export const updateLibraryStats = (games) => ({
+  type: UPDATE_LIBRARY_STATS,
+  games
 });
 
 export const fetchLibrary = user => (dispatch, getState) => {
@@ -270,11 +278,9 @@ export const fetchLibrary = user => (dispatch, getState) => {
   .then(res => normalizeResponseErrors(res))
   .then(res => res.json())
   .then(library => {
-    dispatch(librarySuccess(library.games))
+    dispatch(updateLibraryStats(library.games));
+    dispatch(librarySuccess(library));
   })
-  .catch(err => {
-    dispatch(libraryFailure(err))
-  });
 };
 
 export const addGames = guids => (dispatch, getState) => {

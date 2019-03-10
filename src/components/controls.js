@@ -14,8 +14,6 @@ export class Controls extends React.Component {
       <div className="controls">
         <h4>Platforms</h4>
         {platforms}
-        <h4>Visibility</h4>
-        Make Library Public? <input type="checkbox" />
         <h4>Sorting</h4>
         <select>
           <option value="date-added">Date Added</option>
