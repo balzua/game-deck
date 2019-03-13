@@ -284,6 +284,7 @@ export const fetchLibrary = user => (dispatch, getState) => {
 };
 
 export const addGames = guids => (dispatch, getState) => {
+  const user = getState().app.authentication.user;
   const authToken = getState().app.authentication.authToken;
   console.log(guids);
   return fetch(`${API_BASE_URL}/games`, {
@@ -292,11 +293,11 @@ export const addGames = guids => (dispatch, getState) => {
           // Provide our existing token as credentials to get a new one
         Authorization: `Bearer ${authToken}`,
         'content-type': 'application/json'
-      },
+    },
       body: JSON.stringify(guids)
   })
   .then(res => normalizeResponseErrors(res))
-  .then(res => console.log(res))
+  .then(dispatch(fetchLibrary(user)))
   .catch(err => {
   });
 };
