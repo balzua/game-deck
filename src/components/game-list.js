@@ -11,10 +11,6 @@ export function GameList(props) {
     games = props.games.map((game, index) => 
       <LibraryItem game={game} key={index} id={index} />
     );
-  } else if (props.type === "recommendations") {
-    games = props.games.map((game, index) => 
-      <RecommendationItem game={game} key={index} />
-    );
   }
   return (
     <div className="items">
