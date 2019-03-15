@@ -27,7 +27,7 @@ export function Chart(props) {
 };
 
 export const mapStateToProps = state => ({
-  labels: Object.keys(state.app.library.chartScores),
+  labels: ['Action', 'Puzzle', 'Role-Playing', 'Fighting', 'Shooter', 'Sports/Simulation'],
   data: Object.values(state.app.library.chartScores)
 });
 

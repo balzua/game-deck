@@ -1,9 +1,21 @@
-import {TOGGLE_MODAL, STATUS_SUCCESS, FILTER_PLATFORM, RATING_SUCCESS} from '../actions';
+import {TOGGLE_MODAL, STATUS_SUCCESS, FILTER_PLATFORM, FILTER_ALL, FILTER_NONE, RATING_SUCCESS} from '../actions';
 import {combineReducers} from 'redux';
 import {
   DELETE_GAME_REQUEST,
   DELETE_GAME_SUCCESS,
   DELETE_GAME_FAILURE
+} from '../actions';
+
+import {
+  GAMES_REQUEST,
+  GAMES_SUCCESS,
+  GAMES_FAILURE
+} from '../actions';
+
+import {
+  STATS_REQUEST,
+  STATS_SUCCESS,
+  STATS_FAILURE
 } from '../actions';
 
 import {
@@ -16,25 +28,30 @@ import {
 
 import {
   LIBRARY_SUCCESS,
-  UPDATE_LIBRARY_STATS
+  UPDATE_LIBRARY_STATS,
+  SORT_LIBRARY
 } from '../actions';
+
+import {dateAdded, dateReleased, rating, alphabetical} from '../tools';
 
 const initialState = {
   "games": [],
   "library": {
     "libraryStats": {
     },
+    "sortMethod": dateAdded,
     "chartScores": {
-      "Action": 80,
-      "Puzzle": 50,
-      "Role-Playing": 95,
-      "Fighting": 20,
-      "Shooter": 73
+      "actionScore": 0,
+      "puzzleScore": 0,
+      "rpgScore": 0,
+      "fightingScore": 0,
+      "shooterScore": 0,
+      "simScore": 0
     },
     "filters": [],
     "modalDisplay": false,
     "modalContent": "login",
-    "platforms": []
+    "platforms": ["PS4", "XONE", "NSW", "PC", "PS3", "X360", "WiiU", "Wii", "PS2", "XBOX", "GCN", "PS1", "N64", "SNES", "NES"]
   },
   "authentication": {
     "loading": false,
@@ -45,8 +62,29 @@ const initialState = {
 };
 
 const games = (state = initialState.games, action) => {
-  if (action.type === LIBRARY_SUCCESS) {
-    return Object.assign([], state, action.library.games);
+  if (action.type === GAMES_SUCCESS) {
+    const sortedGames = action.games.sort(action.sortMethod);
+    return Object.assign([], state, sortedGames);
+  }
+  else if (action.type === SORT_LIBRARY) {
+    let sortFunction;
+    switch (action.sortMethod) {
+      case 'dateReleased':
+        sortFunction = dateReleased;
+        break;
+      case 'alphabetical':
+        sortFunction = alphabetical;
+        break;
+      case 'rating':
+        sortFunction = rating;
+        break;
+      default: 
+        sortFunction = dateAdded;
+        break;
+    }
+    const sortedGames = state.sort(sortFunction);
+    console.log(sortedGames);
+    return Object.assign([], state, sortedGames);
   }
   else if (action.type === DELETE_GAME_REQUEST) {
     return state.map(game => {
@@ -65,7 +103,7 @@ const games = (state = initialState.games, action) => {
       if (game.id !== action.id) {
         return {...game}
       } else {
-        return {...game, error: action.error}
+        return {...game, error: action.error, deleteRequest: false}
       }
     });
   }
@@ -93,10 +131,9 @@ const games = (state = initialState.games, action) => {
 }
 
 const library = (state = initialState.library, action) => {
-  if (action.type === LIBRARY_SUCCESS) {
+  if (action.type === STATS_SUCCESS) {
     return Object.assign({}, state, {
-      "chartScores": action.library.chartScores,
-      "platforms": action.library.platforms
+      chartScores: action.stats
     });
   }
   else if (action.type === UPDATE_LIBRARY_STATS) {
@@ -127,6 +164,16 @@ const library = (state = initialState.library, action) => {
       });
     }
   } 
+  else if (action.type === FILTER_NONE) {
+    return Object.assign({}, state, {
+      filters: []
+    });
+  }
+  else if (action.type === FILTER_ALL) {
+    return Object.assign({}, state, {
+      filters: state.platforms
+    });
+  }
   else if (action.type === TOGGLE_MODAL) {
     return Object.assign({}, state, {
       modalDisplay: !state.modalDisplay,

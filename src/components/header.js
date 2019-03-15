@@ -12,7 +12,6 @@ export function Header(props) {
     headerLinks = (
       <ul>
         <li><Link to='/library'>Library</Link></li>
-        <li><Link to='/recommendations'>Recommendations</Link></li>
         <li><a href='#' onClick={() => props.dispatch(logout())}>Logout</a></li>
       </ul>
     );

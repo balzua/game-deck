@@ -25,7 +25,6 @@ export default function Game(props) {
           {props.description}
         </p>
         <ul>
-          <li><b>Rating:</b> {props.rating}</li>
           <li><b>Platform(s): {platforms}</b> </li>
           <li><b>Genre:</b> {genres}</li>
           <li><b>Released:</b> {dateString}</li>

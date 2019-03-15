@@ -2,7 +2,7 @@ import React from 'react';
 import {reduxForm, Field} from 'redux-form';
 import {required, nonEmpty, isTrimmed, length, matches} from '../validators';
 import Input from './input';
-import {registerUser, toggleModal} from '../actions';
+import {registerUser, toggleModal, login} from '../actions';
 
 const passwordLength = length({min: 5, max: 72});
 const userNameLength = length({min: 2, max: 20});
@@ -14,6 +14,7 @@ export class RegistrationForm extends React.Component {
     const {username, password} = values;
     const user = {username, password}
     return this.props.dispatch(registerUser(user))
+      .then(() => this.props.dispatch(login(user)))
       .then(() => this.props.dispatch(toggleModal()))
   }
   
