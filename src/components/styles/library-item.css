@@ -68,6 +68,11 @@
   align-items: flex-end;
 }
 
+.error {
+  font-weight: bold;
+  color: darkred;
+}
+
 @media only screen and (max-width: 370px) {
   .library-item {
     grid-template-areas: 

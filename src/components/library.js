@@ -1,6 +1,7 @@
 import React from 'react';
+import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {fetchLibrary} from '../actions';
+import {fetchGames, fetchStats} from '../actions';
 import GameList from './game-list';
 import LibraryOptions from './library-options';
 import './styles/library.css';
@@ -8,11 +9,16 @@ import './styles/library.css';
 export class Library extends React.Component {
   
   componentDidMount() {
-    console.log(`Dispatching library fetch with user ${this.props.user}`);
-    this.props.dispatch(fetchLibrary(this.props.user));
+    this.props.dispatch(fetchStats(this.props.user));
+    this.props.dispatch(fetchGames(this.props.user));
   }
   
   render() {
+    if (!this.props.user) {
+      return (
+        <Redirect to="/" />
+      );
+    }
     return (
       <div className="container">
         <LibraryOptions />

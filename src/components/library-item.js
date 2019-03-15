@@ -34,9 +34,9 @@ export class LibraryItem extends React.Component {
                 <Rating id={this.props.game.id} />
                 <GameForm id={this.props.game.id} />
               </div>
+              {error}
               <DeleteButton id={this.props.game.id} />
             </div>
-            {error}
         </div>
       );
     } else {

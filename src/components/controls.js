@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {filterAll, filterNone, sortLibrary} from '../actions';
 import './styles/controls.css';
 
 import Platform from './platform';
@@ -14,12 +15,14 @@ export class Controls extends React.Component {
       <div className="controls">
         <h4>Platforms</h4>
         {platforms}
+        <button onClick={() => this.props.dispatch(filterNone())}>Filter None</button>
+        <button onClick={() => this.props.dispatch(filterAll())}>Filter All</button>
         <h4>Sorting</h4>
-        <select>
-          <option value="date-added">Date Added</option>
-          <option value="alphabetical">Alphabetical</option>
-          <option value="rating">Top Rated</option>
-          <option value="date-released">Date Released</option>
+        <select onChange={(e) => this.props.dispatch(sortLibrary(e.target.value))}>
+          <option value="dateAdded">Date Added</option>
+          <option value="dateReleased">Date Released</option>
+          <option value="alphabetical">Name</option>
+          <option value="rating">Rating</option>
         </select>
       </div>
     );

@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {addGames, fetchLibrary} from '../actions';
+import {addGames, fetchGames} from '../actions';
 import Async from 'react-select';
 import './styles/add-game.css';
 import {API_BASE_URL, debounce} from '../tools';
@@ -22,7 +22,7 @@ export class AddGame extends React.Component {
     const guids = this.state.selectedOption.map(game => game.value);
     this.props.dispatch(addGames({guid: guids}));
     this.setState({ selectedOption: [] });
-    this.props.dispatch(fetchLibrary(this.props.user));
+    this.props.dispatch(fetchGames(this.props.user));
   }
   
   printValues() {

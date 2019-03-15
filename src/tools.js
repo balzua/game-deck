@@ -1,4 +1,20 @@
-export const API_BASE_URL = 'https://balzua-game-deck-server.glitch.me/';
+export const API_BASE_URL = 'https://balzua-game-deck-server.glitch.me';
+
+export const dateAdded = (a, b) => {
+  return new Date(b.dateAdded) - new Date(a.dateAdded);
+}
+
+export const dateReleased = (a, b) => {
+  return new Date(b.releaseDate) - new Date(a.releaseDate);
+}
+
+export const rating = (a, b) => {
+  return b.userRating - a.userRating;
+}
+
+export const alphabetical = (a, b) => {
+  return a.name < b.name ? -1 : 1; 
+}
 
 export const normalizeResponseErrors = res => {
     if (!res.ok) {
