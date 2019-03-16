@@ -21,11 +21,10 @@ export class AddGame extends React.Component {
     e.preventDefault();
     const guids = this.state.selectedOption.map(game => game.value);
     this.props.dispatch(addGames({guid: guids}));
-    this.setState({ selectedOption: [] });
     this.props.dispatch(fetchGames(this.props.user));
+    this.setState({games: [], selectedOption: []});
   }
 
-  
   getResults(input) {
     if (!input) {
       return;
@@ -50,13 +49,14 @@ export class AddGame extends React.Component {
       <h4>Add to Library</h4>
       <form onSubmit={(e) => this.handleSubmit(e)}>
         <Async
+          value={this.state.selectedOption}
           options={this.state.games}
           isSearchable 
           isMulti 
           placeholder={placeholder} 
           onChange={(e) => this.handleChange(e)}
           onInputChange={(input) => this.getResults(input)}
-          noOptionsMessage={(input) => "Loading..."} />
+          noOptionsMessage={() => "Loading..."} />
         <input type="submit" />
       </form>
     </div>

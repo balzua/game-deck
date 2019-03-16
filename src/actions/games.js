@@ -75,6 +75,7 @@ export const updateRating = (rating, id) => (dispatch, getState) => {
   .then(() => {
     dispatch(ratingSuccess(rating, id))
     dispatch(updateLibraryStats(getState().app.games));
+    dispatch(fetchStats(getState().app.authentication.user));
   })
   .catch(err => {
     dispatch(ratingFailure(id, err))
