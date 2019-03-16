@@ -75,7 +75,6 @@ export const updateRating = (rating, id) => (dispatch, getState) => {
   .then(() => {
     dispatch(ratingSuccess(rating, id))
     dispatch(updateLibraryStats(getState().app.games));
-    dispatch(fetchStats(getState().app.authentication.user));
   })
   .catch(err => {
     dispatch(ratingFailure(id, err))
@@ -109,8 +108,11 @@ export const updateStatus = (status, id) => (dispatch, getState) => {
     },
     body: JSON.stringify(update)
   })
-  .then(dispatch(statusSuccess(status, id)))
+  .then(() => {
+    dispatch(statusSuccess(status, id));
+    dispatch(updateLibraryStats(getState().app.games));
+  })
   .catch(err => {
-    dispatch(statusFailure(err))
+    dispatch(statusFailure(err));
   });
 };

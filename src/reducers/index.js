@@ -112,7 +112,7 @@ const games = (state = initialState.games, action) => {
       if (game.id !== action.id) {
         return {...game};
       } else {
-        return {...game, status: action.status};
+        return {...game, libraryStatus: action.status};
       }
     })
   } 

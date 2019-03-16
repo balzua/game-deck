@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 
 import './styles/game-list.css';
 import LibraryItem from './library-item';
-import RecommendationItem from './recommendation-item';
 
 export function GameList(props) {
   let games;

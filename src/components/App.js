@@ -6,7 +6,6 @@ import Footer from './footer';
 import Library from './library';
 import Landing from './landing';
 import Modal from './modal';
-import Recommendations from './recommendations';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import './styles/App.css';
 
@@ -51,7 +50,6 @@ export class App extends React.Component {
           <Header />
           <Switch>
             <Route exact path='/library' component={Library} />
-            <Route exact path='/recommendations' component={Recommendations} />
             <Route path='/' component={Landing} />
           </Switch>
           <Footer />
