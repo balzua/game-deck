@@ -49,6 +49,7 @@ export class AddGame extends React.Component {
       <h4>Add to Library</h4>
       <form onSubmit={(e) => this.handleSubmit(e)}>
         <Async
+          classNamePrefix="add-game"
           value={this.state.selectedOption}
           options={this.state.games}
           isSearchable 

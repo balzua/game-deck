@@ -1,12 +1,15 @@
 .rating {
-  font-size: 32px;
+  font-size: 40px;
   color: #FFD700;
+  cursor: pointer;
 }
 
 .star-disabled {
   color: #727272;
+  transition: all 200ms ease-in;
 }
 
 .star-enabled {
   color: #FFD700;
+  transition: all 200ms ease-in;
 }
