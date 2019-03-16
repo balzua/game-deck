@@ -7,7 +7,6 @@ import Library from './library';
 import Landing from './landing';
 import Modal from './modal';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import './styles/App.css';
 
 export class App extends React.Component {
   

@@ -13,6 +13,9 @@
 .game-title {
   margin: 10px 0;
   grid-area: title;
+  color: #1F96FF;
+  font-size: 28px;
+  font-family: 'Roboto', sans-serif;
 }
 
 .game-title h3 {
@@ -38,8 +41,25 @@
   margin: 0 20px 5px 3px;
 }
 
+.game-info li h4 {
+  color: #48F022;
+  font-size: 18px;
+  font-family: 'Roboto', sans-serif;
+  margin: 0px 0px 0px 0px;
+}
+
 .game-info p {
   margin: 0 0 10px 3px;
+}
+
+select {
+  border-color: black;
+  padding: 8px 10px 8px 10px;
+  border-radius: 5px;
+  background-color: #252525;
+  color: #FFFFFF;
+  box-shadow: inset 0px 0px 10px #000000;
+  font-weight: bold;
 }
 
 @media only screen and (min-width: 500px) {

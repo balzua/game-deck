@@ -1,14 +1,32 @@
 header {
   display: flex;
   justify-content: space-between;
-  width: 100%;
   border-bottom: 1px solid black;
   margin: 0 0 50px 0;
   padding: 1em;
+  background-color: #1F1F1F;
+  align-items: center;
+}
+
+header h1 {
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: bold;
+  margin: 0;
 }
 
 nav li {
   display: inline-block;
   list-style-type: none;
   margin-left: 1em;
+}
+
+nav ul {
+  margin: 0;
+}
+
+nav li a {
+  color: white;
+  text-decoration: underline;
+  font-size: 24px;
 }

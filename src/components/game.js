@@ -25,9 +25,9 @@ export default function Game(props) {
           {props.description}
         </p>
         <ul>
-          <li><b>Platform(s): {platforms}</b> </li>
-          <li><b>Genre:</b> {genres}</li>
-          <li><b>Released:</b> {dateString}</li>
+          <li><h4>Platforms</h4>{platforms} </li>
+          <li><h4>Genre</h4> {genres}</li>
+          <li><h4>Released</h4> {dateString}</li>
         </ul>
       </div>
     </React.Fragment>

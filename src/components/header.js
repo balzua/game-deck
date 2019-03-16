@@ -19,17 +19,15 @@ export function Header(props) {
   else {
     headerLinks = (
       <ul>
-        <li><a href='#' onClick={() => props.dispatch(toggleModal('registration'))}>Register</a></li>
-        <li><a href='#' onClick={() => props.dispatch(toggleModal('login'))}>Login</a></li>
+        <li><a href='#' onClick={() => props.dispatch(toggleModal('Register'))}>Register</a></li>
+        <li><a href='#' onClick={() => props.dispatch(toggleModal('Login'))}>Login</a></li>
       </ul>
     );
   }
   
   return (
     <header>
-      <div className="home">
-        Title
-      </div>
+      <h1>Game Deck</h1>
       <nav>
         {headerLinks}
       </nav>

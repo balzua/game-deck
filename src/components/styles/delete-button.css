@@ -1,4 +1,21 @@
 .delete-button {
   display: flex;
   justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.delete-button button {
+  border: 1px solid black;
+  padding: 8px 10px 8px 10px;
+  background-color: #252525;
+  color: #FF203E;
+  box-shadow: inset 0px 0px 10px #000000;
+  font-weight: bold;
+  transition: all 400ms ease-in;
+}
+
+.delete-button button:hover {
+  color: #ffffff;
+  background-color: #FF203E;
+  transition: all 400ms ease-out;
 }

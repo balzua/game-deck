@@ -4,7 +4,7 @@
     "chart chart"
     "stats options"
     "add add";
-  border: 1px solid black;
+  box-shadow: 0px 0px 30px #000000;
 }
 
 .add-games {

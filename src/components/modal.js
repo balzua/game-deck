@@ -7,9 +7,9 @@ import { toggleModal } from '../actions';
 
 export function Modal(props) {
   let content;
-  if (props.content === "registration") {
+  if (props.content === "Register") {
     content = <RegistrationForm />
-  } else if (props.content === "login") {
+  } else if (props.content === "Login") {
     content = <LoginForm />
   }
   if (props.display) {
@@ -17,6 +17,7 @@ export function Modal(props) {
       // If the user clicks the modal, first verify they clicked outside the content zone, and if so toggle the modal to remove it.
       <div className="modal" onClick={(e) => e.target.className === 'modal' ? props.dispatch(toggleModal()) : null}>
         <div className="modal-content">
+          <h1>{props.content}</h1>
           {content}
         </div>
       </div>
