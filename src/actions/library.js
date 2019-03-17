@@ -82,9 +82,20 @@ export const fetchStats = user => (dispatch, getState) => {
   });
 };
 
+export const ADD_GAME_REQUEST = 'ADD_GAME_REQUEST';
+export const addGameRequest = () => ({
+  type: ADD_GAME_REQUEST
+});
+
+export const ADD_GAME_SUCCESS = 'ADD_GAME_SUCCESS';
+export const addGameSuccess = () => ({
+  type: ADD_GAME_SUCCESS
+});
+
 export const addGames = guids => (dispatch, getState) => {
   const authToken = getState().app.authentication.authToken;
   const user = getState().app.authentication.user;
+  dispatch(addGameRequest());
   return fetch(`${API_BASE_URL}/games`, {
     method: 'POST',
       headers: {
@@ -95,7 +106,10 @@ export const addGames = guids => (dispatch, getState) => {
       body: JSON.stringify(guids)
   })
   .then(res => normalizeResponseErrors(res))
-  .then(() => dispatch(fetchGames(user)))
+  .then(() => {
+    dispatch(addGameSuccess());
+    dispatch(fetchGames(user));
+  })
   .catch(err => {
   });
 };

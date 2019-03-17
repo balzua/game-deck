@@ -7,6 +7,11 @@ import {
 } from '../actions';
 
 import {
+  ADD_GAME_REQUEST,
+  ADD_GAME_SUCCESS
+} from '../actions';
+
+import {
   GAMES_REQUEST,
   GAMES_SUCCESS,
   GAMES_FAILURE
@@ -135,6 +140,16 @@ const library = (state = initialState.library, action) => {
     return Object.assign({}, state, {
       chartScores: action.stats
     });
+  }
+  else if (action.type === ADD_GAME_REQUEST) {
+    return Object.assign({}, state, {
+      "addGameLoading": true
+    })
+  }
+  else if (action.type === ADD_GAME_SUCCESS) {
+    return Object.assign({}, state, {
+      "addGameLoading": false
+    })
   }
   else if (action.type === UPDATE_LIBRARY_STATS) {
     const completedGames = action.games.filter(game => game.libraryStatus === "completed");

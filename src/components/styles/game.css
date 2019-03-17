@@ -55,7 +55,6 @@
 select {
   border-color: black;
   padding: 8px 10px 8px 10px;
-  border-radius: 5px;
   background-color: #252525;
   color: #FFFFFF;
   box-shadow: inset 0px 0px 10px #000000;

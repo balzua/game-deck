@@ -1,27 +1,37 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Radar} from 'react-chartjs-2';
+import {Doughnut} from 'react-chartjs-2';
 
 export function Chart(props) {
   const chartData = {
     labels: props.labels,
     datasets: [{
         data: props.data,
-        backgroundColor: 'rgba(22,123,233, 0.3)',
-        borderColor: 'rgba(22,123,233, 0.7)'
+        backgroundColor: [
+          '#2396FD',
+          '#2CBC2B',
+          '#F0203D',
+          '#7C0DE5',
+          '#FFEC11',
+          '#FF5613'
+        ]
     }]
   };
 
   const chartOptions = {
     legend: {
-      display: false,
+      display: true,
+      position: 'right',
+      labels: {
+        fontColor: '#FFFFFF'
+      }
     },
     responsive: true
   };
 
   return (
     <div className="chart">
-      <Radar data={chartData} options={chartOptions}/>
+      <Doughnut data={chartData} options={chartOptions}/>
     </div>
   );
 };

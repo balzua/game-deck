@@ -6,6 +6,12 @@
   margin-top: 0px;
 }
 
+.add-games input[type=submit]:hover {
+  color: #ffffff;
+  background-color: #48F022;
+  transition: all 400ms ease-out;
+}
+
 .add-games input[type=submit] {
   border: 1px solid black;
   padding: 10px 12px 10px 12px;
@@ -70,4 +76,10 @@
   color: #ffffff !important;
   border-radius: 0px 0px 0px 0px !important;
   transition: all 200ms ease-in;
+}
+
+.loading {
+  display: block;
+  margin-top: 10px;
+  text-align: center;
 }

@@ -6,7 +6,7 @@ export function Stats(props) {
   return (
     <div className="stats">
       <span><h4>Total Games</h4>{props.totalGames}</span>
-      <span><h4>Total Completed</h4>{props.totalCompleted}</span>
+      <span><h4># Completed</h4>{props.totalCompleted}</span>
       <span><h4>Average Rating</h4>{props.averageRating}</span>
     </div>
   );

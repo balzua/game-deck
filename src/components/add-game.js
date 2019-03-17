@@ -19,6 +19,9 @@ export class AddGame extends React.Component {
   
   handleSubmit(e) {
     e.preventDefault();
+    if (!this.state.selectedOption) {
+      return;
+    }
     const guids = this.state.selectedOption.map(game => game.value);
     this.props.dispatch(addGames({guid: guids}));
     this.props.dispatch(fetchGames(this.props.user));
@@ -39,9 +42,12 @@ export class AddGame extends React.Component {
       this.setState({games: res});
     });
   }
-  
+
+
   render() {
-    
+
+  const spinner = this.props.loading ? (<div className="loading"><img src="http://localhost:3000/loading.svg" alt="loading" /></div>) : "";
+  
   const placeholder = "Add a game...";
     
   return (
@@ -60,6 +66,7 @@ export class AddGame extends React.Component {
           noOptionsMessage={() => "Loading..."} />
         <input type="submit" />
       </form>
+      {spinner}
     </div>
     );
   }
@@ -67,7 +74,8 @@ export class AddGame extends React.Component {
 
 const mapStateToProps = state => ({
   authToken: state.app.authentication.authToken,
-  user: state.app.authentication.user
+  user: state.app.authentication.user,
+  loading: state.app.library.addGameLoading
 });
 
 export default connect(mapStateToProps)(AddGame);

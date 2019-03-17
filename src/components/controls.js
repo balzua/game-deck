@@ -8,13 +8,22 @@ import Platform from './platform';
 export class Controls extends React.Component {
                                              
   render() {
-    const platforms = this.props.platforms.map((platform, index) =>
-      <Platform name={platform} key={index} isButton />
-    );
+    let platforms = [];
+    let platformDisplay = [];
+    for (let i = 0; i < this.props.platforms.length; i += 8) {
+      platforms.push(this.props.platforms.slice(i, i + 8))
+    }
+    for (let i = 0; i < platforms.length; i++) {
+      let thisRow = [];
+      for (let j = 0; j < platforms[i].length; j++) {
+        thisRow.push(<Platform name={platforms[i][j]} key={j} isButton />);
+      }
+      platformDisplay.push(<div className="platformRow" key={i * 10}>{thisRow}</div>)
+    }
     return (
       <div className="controls">
         <h4>Platforms</h4>
-        {platforms}
+        {platformDisplay}
         <button onClick={() => this.props.dispatch(filterNone())}>Filter None</button>
         <button onClick={() => this.props.dispatch(filterAll())}>Filter All</button>
         <h4>Sorting</h4>

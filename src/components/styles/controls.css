@@ -1,11 +1,31 @@
 .controls {
   grid-area: options;
-  border: 1px solid black;
   padding: 10px;
 }
 
 .controls h4 {
-  font-size: 16px;
-  font-weight: bold;
   margin: 15px 0 3px 0;
+  font-size: 20px;
+  font-weight: bold;
+  color: #2396FD;
+}
+
+.controls button:hover {
+  color: #ffffff;
+  background-color: #2396FD;
+  transition: all 400ms ease-out;
+}
+
+.controls button {
+  border: 1px solid black;
+  padding: 8px 12px 8px 12px;
+  background-color: #252525;
+  color: #2396FD;
+  box-shadow: inset 0px 0px 10px #000000;
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 10px;
+  margin-right: 5px;
+  display: inline-block;
+  cursor: pointer;
 }
