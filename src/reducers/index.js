@@ -8,7 +8,8 @@ import {
 
 import {
   ADD_GAME_REQUEST,
-  ADD_GAME_SUCCESS
+  ADD_GAME_SUCCESS,
+  ADD_GAME_FAILURE
 } from '../actions';
 
 import {
@@ -143,12 +144,20 @@ const library = (state = initialState.library, action) => {
   }
   else if (action.type === ADD_GAME_REQUEST) {
     return Object.assign({}, state, {
-      "addGameLoading": true
+      "addGameLoading": true,
+      "addGameError": false
     })
   }
   else if (action.type === ADD_GAME_SUCCESS) {
     return Object.assign({}, state, {
-      "addGameLoading": false
+      "addGameLoading": false,
+      "addGameError": false
+    })
+  }
+  else if (action.type === ADD_GAME_FAILURE) {
+    return Object.assign({}, state, {
+      "addGameLoading": false,
+      "addGameError": action.error
     })
   }
   else if (action.type === UPDATE_LIBRARY_STATS) {

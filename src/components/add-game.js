@@ -47,7 +47,8 @@ export class AddGame extends React.Component {
   render() {
 
   const spinner = this.props.loading ? (<div className="loading"><img src="http://localhost:3000/loading.svg" alt="loading" /></div>) : "";
-  
+  const error = this.props.error ? (<span className="error">Error, please try again later</span>) : "";
+
   const placeholder = "Add a game...";
     
   return (
@@ -67,6 +68,7 @@ export class AddGame extends React.Component {
         <input type="submit" />
       </form>
       {spinner}
+      {error}
     </div>
     );
   }
@@ -75,7 +77,8 @@ export class AddGame extends React.Component {
 const mapStateToProps = state => ({
   authToken: state.app.authentication.authToken,
   user: state.app.authentication.user,
-  loading: state.app.library.addGameLoading
+  loading: state.app.library.addGameLoading,
+  error: state.app.library.addGameError
 });
 
 export default connect(mapStateToProps)(AddGame);

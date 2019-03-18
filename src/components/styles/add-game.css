@@ -83,3 +83,8 @@
   margin-top: 10px;
   text-align: center;
 }
+
+.error {
+  color: #FF203E;
+  font-size: 20px;
+}

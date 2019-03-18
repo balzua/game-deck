@@ -92,6 +92,12 @@ export const addGameSuccess = () => ({
   type: ADD_GAME_SUCCESS
 });
 
+export const ADD_GAME_FAILURE = 'ADD_GAME_FAILURE';
+export const addGameFailure = (error) => ({
+  type: ADD_GAME_FAILURE,
+  error
+});
+
 export const addGames = guids => (dispatch, getState) => {
   const authToken = getState().app.authentication.authToken;
   const user = getState().app.authentication.user;
@@ -111,5 +117,6 @@ export const addGames = guids => (dispatch, getState) => {
     dispatch(fetchGames(user));
   })
   .catch(err => {
+    dispatch(addGameFailure(err));
   });
 };

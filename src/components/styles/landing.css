@@ -1,0 +1,26 @@
+.screenshot {
+    width: 60%;
+    font-size: 30px;
+    margin: 0;
+    object-fit: cover;
+}
+
+.screenshot img {
+    float: left;
+    max-width: 100%;
+}
+
+.hometext a, .hometext a:hover, .hometext a:visited  {
+    color: white;
+}
+
+.hometext h2 {
+    font-size: 50px;
+    margin-top: 50px;
+    text-align: left;
+}
+
+.hometext p {
+    margin-top: 60px;
+    font-size: 2em;
+}

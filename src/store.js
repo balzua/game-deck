@@ -12,8 +12,6 @@ const fullReducer = combineReducers({
 
 const store = createStore(fullReducer, applyMiddleware(thunk));
 
-//const store = createStore(fullReducer, applyMiddleware(thunk));
-
 const authToken = loadAuthToken();
 const user = loadUser();
 if (authToken && user) {

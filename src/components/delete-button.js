@@ -18,6 +18,9 @@ export class DeleteButton extends React.Component {
   }
   
   deleteGame() {
+    this.setState({
+      deleting: !this.state.deleting
+    });
     this.props.dispatch(deleteGame(this.props.id));
   }
   
