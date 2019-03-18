@@ -19,7 +19,6 @@ export function GameList(props) {
 };
 
 export const mapStateToProps = state => ({
-  test: state.app,
   games: state.app.games || []
 });
 
