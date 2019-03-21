@@ -1,4 +1,4 @@
-export const API_BASE_URL = 'https://balzua-game-deck-server.glitch.me';
+export const API_BASE_URL = 'https://balzua-game-deck-server.herokuapp.com';
 
 export const dateAdded = (a, b) => {
   return new Date(b.dateAdded) - new Date(a.dateAdded);
