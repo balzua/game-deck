@@ -1,13 +1,30 @@
+.landing {
+    display: grid;
+    grid-template-areas: 'screenshot'
+                         'text';
+}
+
+@media only screen and (min-width: 700px) {
+    .landing {
+        grid-template-areas: 'screenshot text';
+    }
+}
+
 .screenshot {
     width: 60%;
     font-size: 30px;
     margin: 0;
     object-fit: cover;
+    grid-area: screenshot;
 }
 
 .screenshot img {
     float: left;
     max-width: 100%;
+}
+
+.hometext {
+    grid-area: text;
 }
 
 .hometext a, .hometext a:hover, .hometext a:visited  {
