@@ -5,7 +5,7 @@ A React app to track your game library and get recommendations based on your tas
 Live Demo Link: https://vast-shore-71046.herokuapp.com/
 
 Username: demo
-Password: demo
+Password: demo1
 
 ## How to Use
 A user can sign up for an account to maintain their video game library and get an idea of their taste preferences and easily track their collection. Add games typing one or more titles into the search bar. All game data is sourced from the Giant Bomb API. 
