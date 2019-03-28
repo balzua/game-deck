@@ -42,7 +42,7 @@ export class LoginForm extends React.Component {
             validate={[required, nonEmpty]} />
         </div>
         <button type="submit">Submit</button><br />
-        <b>Demo Account:</b> Username: demo Password: demo1
+        <b>Demo Account:</b><br /> Username: demo Password: demo1
       </form>
     );
   }
