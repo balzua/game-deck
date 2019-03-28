@@ -12,7 +12,7 @@ export class Landing extends React.Component {
       );
     }
     return (
-      <React.Fragment>
+      <div className="landing">
         <div className="screenshot">
           <img src="/home1.PNG" />
         </div>
@@ -29,7 +29,7 @@ export class Landing extends React.Component {
             their average rating, and even a graph of your favorite genres, to help you decide what kind of games you might want to buy next, or have an idea to try something new!
           </p>
         </div>
-      </React.Fragment>
+      </div>
     );
   }
 };
