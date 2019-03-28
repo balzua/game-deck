@@ -1,5 +1,5 @@
 # GameDeck
-A React app to track your game library and get recommendations based on your tastes and preferences
+A React app to track and maintain information about your video game collection.
 
 ## Live Demo
 https://vast-shore-71046.herokuapp.com/
@@ -16,6 +16,7 @@ Finally, users can view stats about their library such as their favorite genres 
 
 ## API Documentation
 The REST API can be found at the following repository: https://github.com/balzua/game-deck-server/
+
 Requests to all endpoints other than POST /users must have a valid Bearer JWT from a logged-in user.
 
 ### /users
