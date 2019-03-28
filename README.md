@@ -1,6 +1,8 @@
 # GameDeck
 A React app to track and maintain information about your video game collection.
 
+![alt text](https://i.imgur.com/4zkrUo3.png "GameDeck Screenshot")
+
 ## Live Demo
 https://vast-shore-71046.herokuapp.com/
 
