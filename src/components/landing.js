@@ -14,7 +14,7 @@ export class Landing extends React.Component {
     return (
       <React.Fragment>
         <div className="screenshot">
-          <img src="/home1.png" />
+          <img src="/home1.PNG" />
         </div>
         <div className="hometext">
           <h2>Your Collection, All in One Place!</h2>
