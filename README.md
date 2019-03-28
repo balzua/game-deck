@@ -1,8 +1,8 @@
 # GameDeck
 A React app to track your game library and get recommendations based on your tastes and preferences
 
-## Demo Account
-Live Demo Link: https://vast-shore-71046.herokuapp.com/
+## Live Demo
+https://vast-shore-71046.herokuapp.com/
 
 Username: demo
 Password: demo1
