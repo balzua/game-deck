@@ -46,7 +46,7 @@ export class AddGame extends React.Component {
 
   render() {
 
-  const spinner = this.props.loading ? (<div className="loading"><img src="http://localhost:3000/loading.svg" alt="loading" /></div>) : "";
+  const spinner = this.props.loading ? (<div className="loading"><img src="/loading.svg" alt="loading" /></div>) : "";
   const error = this.props.error ? (<span className="error">Error, please try again later</span>) : "";
 
   const placeholder = "Add a game...";
